@@ -21,20 +21,5 @@ jobs:
       - name: Release Please
         uses: googleapis/release-please-action@v4
         with:
-          release-type: ruby
-          package-name: opaque_id
-          version-file: lib/opaque_id/version.rb
-          changelog-type: default
-          bump-minor-pre-major: true
-          bump-patch-for-minor-pre-major: true
-          draft: false
-          prerelease: false
-          include-component-in-tag: false
-          include-v-in-tag: true
-          pull-request-title-pattern: "chore: release ${version}"
-          pull-request-header: "Release ${version}"
-          pull-request-footer: "This PR was automatically created by Release Please. See [documentation](https://github.com/googleapis/release-please) for more info."
-          separate-pull-requests: false
-          sequential-calls: true
-          skip-github-release: false
-          versioning: default
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
