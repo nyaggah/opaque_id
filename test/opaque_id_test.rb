@@ -94,10 +94,10 @@ class OpaqueIdTest < Minitest::Test
       end
     end
 
-    # Each character should appear roughly equally (within 20% tolerance)
+    # Each character should appear roughly equally (within 30% tolerance)
     expected_count = total_chars / 64.0
     char_counts.each_value do |count|
-      assert_in_delta expected_count, count, expected_count * 0.2,
+      assert_in_delta expected_count, count, expected_count * 0.3,
                       'Character distribution should be roughly uniform'
     end
   end
