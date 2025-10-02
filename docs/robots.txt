@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://nyaggah.github.io/opaque_id/sitemap.xml
+
+# Disallow certain paths
+Disallow: /assets/
+Disallow: /_site/
+Disallow: /vendor/
+Disallow: /node_modules/
