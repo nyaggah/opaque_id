@@ -1,12 +1,12 @@
 @import "just-the-docs";
 
 
-// Color Variables
+// Color Variables - Light theme (default)
 :root {
-  // Dark theme base colors
-  --body-background-color: #0a0a0a;
-  --body-text-color: #e0e0e0;
-  --body-heading-color: #ffffff;
+  // Light theme base colors
+  --body-background-color: #ffffff;
+  --body-text-color: #24292f;
+  --body-heading-color: #1f2328;
   
   // Purple accent colors
   --link-color: #a855f7;
@@ -14,14 +14,14 @@
   --link-color-visited: #9333ea;
   
   // Navigation colors
-  --nav-child-link-color: #b0b0b0;
+  --nav-child-link-color: #656d76;
   --nav-child-link-color-hover: #a855f7;
   --nav-child-link-color-active: #a855f7;
   
   // Code colors
-  --code-background-color: #1a1a1a;
-  --code-text-color: #e0e0e0;
-  --code-border-color: #333333;
+  --code-background-color: #f6f8fa;
+  --code-text-color: #24292f;
+  --code-border-color: #d0d7de;
   
   // Button colors
   --btn-primary-color: #a855f7;
@@ -29,22 +29,68 @@
   --btn-primary-color-hover: #c084fc;
   
   // Border colors
-  --border-color: #333333;
-  --border-color-light: #2a2a2a;
+  --border-color: #d0d7de;
+  --border-color-light: #e1e4e8;
   
   // Table colors
-  --table-background-color: #1a1a1a;
-  --table-header-background-color: #2a2a2a;
-  --table-border-color: #333333;
+  --table-background-color: #ffffff;
+  --table-header-background-color: #f6f8fa;
+  --table-border-color: #d0d7de;
   
   // Search colors
-  --search-background-color: #1a1a1a;
-  --search-border-color: #333333;
-  --search-result-preview-color: #b0b0b0;
+  --search-background-color: #ffffff;
+  --search-border-color: #d0d7de;
+  --search-result-preview-color: #656d76;
   
   // Footer colors
-  --footer-background-color: #0a0a0a;
-  --footer-text-color: #808080;
+  --footer-background-color: #f6f8fa;
+  --footer-text-color: #656d76;
+  
+  // Aux links colors
+  --aux-link-color: #656d76;
+  --aux-link-hover-color: #a855f7;
+}
+
+// Dark theme support
+@media (prefers-color-scheme: dark) {
+  :root {
+    // Dark theme base colors
+    --body-background-color: #0d1117;
+    --body-text-color: #e6edf3;
+    --body-heading-color: #f0f6fc;
+    
+    // Navigation colors
+    --nav-child-link-color: #8b949e;
+    --nav-child-link-color-hover: #a855f7;
+    --nav-child-link-color-active: #a855f7;
+    
+    // Code colors
+    --code-background-color: #161b22;
+    --code-text-color: #e6edf3;
+    --code-border-color: #30363d;
+    
+    // Border colors
+    --border-color: #30363d;
+    --border-color-light: #21262d;
+    
+    // Table colors
+    --table-background-color: #0d1117;
+    --table-header-background-color: #161b22;
+    --table-border-color: #30363d;
+    
+    // Search colors
+    --search-background-color: #0d1117;
+    --search-border-color: #30363d;
+    --search-result-preview-color: #8b949e;
+    
+    // Footer colors
+    --footer-background-color: #0d1117;
+    --footer-text-color: #8b949e;
+    
+    // Aux links colors
+    --aux-link-color: #8b949e;
+    --aux-link-hover-color: #a855f7;
+  }
 }
 
 // Dark theme overrides
@@ -236,7 +282,7 @@ table {
 .site-title {
   color: var(--body-heading-color);
   font-weight: 700;
-  
+
   &:hover {
     color: var(--link-color);
   }
@@ -244,6 +290,62 @@ table {
 
 .site-subtitle {
   color: var(--nav-child-link-color);
+}
+
+// Auxiliary links styling (top of sidebar)
+.aux-nav {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color-light);
+
+  .aux-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    .aux-nav-list-item {
+      margin: 0;
+
+      .aux-nav-list-link {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--aux-link-color);
+        text-decoration: none;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        background-color: transparent;
+        transition: all 0.2s ease;
+
+        &:hover {
+          color: var(--aux-link-hover-color);
+          border-color: var(--aux-link-hover-color);
+          background-color: rgba(168, 85, 247, 0.05);
+          text-decoration: none;
+        }
+
+        &:focus {
+          outline: 2px solid var(--aux-link-hover-color);
+          outline-offset: 2px;
+        }
+
+        // External link icon
+        &[href^="http"]:not([href*="nyaggah.github.io"]) {
+          &::after {
+            content: "↗";
+            margin-left: 0.25rem;
+            font-size: 0.75rem;
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+  }
 }
 
 // Purple accent for active states
@@ -434,6 +536,7 @@ table {
 // Optimize font loading
 @font-face {
   font-family: 'Monaco';
+  src: local('Monaco'), local('Menlo'), local('Ubuntu Mono'), monospace;
   font-display: swap;
 }
 
@@ -441,7 +544,6 @@ table {
 img {
   max-width: 100%;
   height: auto;
-  loading: lazy;
 }
 
 // Optimize code blocks
