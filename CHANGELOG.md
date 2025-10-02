@@ -5,6 +5,14 @@ All notable changes to the OpaqueId gem will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1](https://github.com/nyaggah/opaque_id/compare/v1.0.0...v1.0.1) (2025-10-02)
+
+
+### Bug Fixes
+
+* improve publish workflow trigger reliability ([9c6e240](https://github.com/nyaggah/opaque_id/commit/9c6e2402474d8ecf8a3f754a9f2ca149a63bf1d1))
+* improve statistical test reliability for CI ([c9b0d52](https://github.com/nyaggah/opaque_id/commit/c9b0d52fb4e9559aad489fcf58bdff1917d613a6))
+
 ## 1.0.0 (2025-10-02)
 
 
