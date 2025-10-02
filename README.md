@@ -49,7 +49,7 @@ To install from the latest source:
 
 ```ruby
 # In your Gemfile
-gem 'opaque_id', git: 'https://github.com/joeydoey/opaque_id.git'
+gem 'opaque_id', git: 'https://github.com/nyaggah/opaque_id.git'
 ```
 
 ```bash
@@ -1591,7 +1591,7 @@ This software is provided "as is" without warranty of any kind, express or impli
 
 ## Code of Conduct
 
-Everyone interacting in the OpaqueId project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/joeydoey/opaque_id/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the OpaqueId project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/nyaggah/opaque_id/blob/main/CODE_OF_CONDUCT.md).
 
 ## Acknowledgements
 
