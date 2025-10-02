@@ -536,6 +536,7 @@ table {
 // Optimize font loading
 @font-face {
   font-family: 'Monaco';
+  src: local('Monaco'), local('Menlo'), local('Ubuntu Mono'), monospace;
   font-display: swap;
 }
 
@@ -543,7 +544,6 @@ table {
 img {
   max-width: 100%;
   height: auto;
-  loading: lazy;
 }
 
 // Optimize code blocks
