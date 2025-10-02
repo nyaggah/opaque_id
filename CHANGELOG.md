@@ -5,6 +5,41 @@ All notable changes to the OpaqueId gem will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0](https://github.com/nyaggah/opaque_id/compare/opaque_id-v1.0.2...opaque_id/v1.1.0) (2025-10-02)
+
+
+### Features
+
+* initial release of OpaqueId gem v0.1.0 ([3a90274](https://github.com/nyaggah/opaque_id/commit/3a9027403552f8160e3aaf413d1e99ce8c63bbe4))
+
+
+### Bug Fixes
+
+* add Release Please manifest and update workflow configuration ([f33ce6c](https://github.com/nyaggah/opaque_id/commit/f33ce6c96805b6c670cd1eedf5ebed2a46e8ffa6))
+* add required permissions for Release Please job ([cdf8d2b](https://github.com/nyaggah/opaque_id/commit/cdf8d2bfc5dbea9a9ec40411a988191ba91913fa))
+* improve publish workflow trigger reliability ([9c6e240](https://github.com/nyaggah/opaque_id/commit/9c6e2402474d8ecf8a3f754a9f2ca149a63bf1d1))
+* improve statistical test reliability for CI ([c9b0d52](https://github.com/nyaggah/opaque_id/commit/c9b0d52fb4e9559aad489fcf58bdff1917d613a6))
+* remove unsupported Release Please configuration parameters ([e3b0d2a](https://github.com/nyaggah/opaque_id/commit/e3b0d2ac96b905316a78992004fae83423991632))
+* resolve dependency version conflicts and improve test robustness ([af43e13](https://github.com/nyaggah/opaque_id/commit/af43e13393a452f11ce32bafb26a267d1460736c))
+
+
+### Miscellaneous Chores
+
+* **main:** release 1.0.0 ([43282c5](https://github.com/nyaggah/opaque_id/commit/43282c5865aae3f136c9eaa49f013066a2359826))
+* **main:** release 1.0.0 ([b8271ad](https://github.com/nyaggah/opaque_id/commit/b8271ad43cf6fab4687276258f0105c06a87bff7))
+* **main:** release 1.0.1 ([4ee2e2c](https://github.com/nyaggah/opaque_id/commit/4ee2e2c69905e71d6c5048617af09b65cbb9e12a))
+* **main:** release 1.0.1 ([e6cd2f8](https://github.com/nyaggah/opaque_id/commit/e6cd2f8f8ff545ad3010598488f71956e36a88c5))
+* **main:** release 1.0.2 ([d5c7423](https://github.com/nyaggah/opaque_id/commit/d5c7423cf06ae7638d95cdd29b2631049efed727))
+* **main:** release 1.0.2 ([365dff8](https://github.com/nyaggah/opaque_id/commit/365dff87a044aa967906866d6ace8d1ccad08c78))
+* sync version to 1.0.2 ([2f870c8](https://github.com/nyaggah/opaque_id/commit/2f870c89d486f0a5cda8ef37e5544c29c8fa2919))
+* update author name and GitHub URLs ([e911548](https://github.com/nyaggah/opaque_id/commit/e911548e89e1e60ac3281157059f7c7b812750bd))
+* update bundle and add Linux platform support ([661842f](https://github.com/nyaggah/opaque_id/commit/661842f0ba66ce36962bb11f75a1b0e35eb5a3e7))
+
+
+### Code Refactoring
+
+* integrate Release Please into main CI workflow ([8a0b189](https://github.com/nyaggah/opaque_id/commit/8a0b189a8bfbfcc07275c9bdda3397ff367b2054))
+
 ## [1.0.2](https://github.com/nyaggah/opaque_id/compare/v1.0.1...v1.0.2) (2025-10-02)
 
 
