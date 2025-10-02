@@ -2,7 +2,10 @@ name: publish-gem
 
 on:
   release:
-    types: [published]
+    types: [published, created]
+  push:
+    tags:
+      - "v*"
 
 permissions:
   id-token: write # IMPORTANT: this permission is mandatory for trusted publishing
