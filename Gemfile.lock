@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    opaque_id (1.2.0)
+    opaque_id (1.3.0)
       activerecord (>= 8.0)
       activesupport (>= 8.0)
 

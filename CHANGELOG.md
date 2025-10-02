@@ -5,6 +5,34 @@ All notable changes to the OpaqueId gem will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0](https://github.com/nyaggah/opaque_id/compare/opaque_id/v1.2.0...opaque_id/v1.3.0) (2025-10-02)
+
+
+### Features
+
+* implement dynamic copyright year ([b86cea6](https://github.com/nyaggah/opaque_id/commit/b86cea66e60939377c6b0a67c1d385c9bf4bece3))
+* improve documentation site theme and navigation ([304f845](https://github.com/nyaggah/opaque_id/commit/304f845a47397ea2a15f12d2c635144b39be431b))
+
+
+### Bug Fixes
+
+* add frozen string literal comment to docs/Gemfile ([2d653a7](https://github.com/nyaggah/opaque_id/commit/2d653a7bbc071e67e94e63ebc1602768b8d04456))
+* configure just-the-docs theme for GitHub Pages compatibility ([c2fb96c](https://github.com/nyaggah/opaque_id/commit/c2fb96c46e99fd5287520e01c3bc2dd7bd5d4817))
+* resolve CSS linting warnings ([d01e8c0](https://github.com/nyaggah/opaque_id/commit/d01e8c05628b7f2bd8b39a13325112168cf4e689))
+* update deprecated platform specifications in docs/Gemfile ([cf96134](https://github.com/nyaggah/opaque_id/commit/cf9613499150dd7152bff38aa8f8fe7ab9923eb5))
+
+
+### Documentation
+
+* implement comprehensive documentation site with dark theme ([19cc9e3](https://github.com/nyaggah/opaque_id/commit/19cc9e30c584658559c5404a4518e871039cc223))
+* implement comprehensive documentation site with dark theme ([a249c6a](https://github.com/nyaggah/opaque_id/commit/a249c6ad2253439f0d070620a914ff87597cf7cb))
+
+
+### Miscellaneous Chores
+
+* configure just-the-docs theme ([3dfcac8](https://github.com/nyaggah/opaque_id/commit/3dfcac88099e65e61931e558e9242050bdbf0bc9))
+* update Gemfile.lock after dependency check ([058281f](https://github.com/nyaggah/opaque_id/commit/058281f6e07f3c9a1057c6fbeb0200bccf221558))
+
 ## [1.2.0](https://github.com/nyaggah/opaque_id/compare/opaque_id/v1.1.0...opaque_id/v1.2.0) (2025-10-02)
 
 
