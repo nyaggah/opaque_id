@@ -10,6 +10,9 @@ permalink: /usage/
 
 This guide covers all usage patterns for OpaqueId, from basic standalone generation to advanced ActiveRecord integration.
 
+- TOC
+{:toc}
+
 ## Standalone ID Generation
 
 OpaqueId can be used independently of ActiveRecord for generating secure, random IDs.

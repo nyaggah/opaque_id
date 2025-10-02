@@ -10,6 +10,9 @@ permalink: /api-reference/
 
 This document provides complete API documentation for OpaqueId, including all methods, classes, and configuration options.
 
+- TOC
+{:toc}
+
 ## Core Module: OpaqueId
 
 The main module for generating opaque IDs.
