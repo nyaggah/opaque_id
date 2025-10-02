@@ -4,14 +4,15 @@ description: Generate cryptographically secure, collision-free opaque IDs for Ac
 url: "https://nyaggah.github.io"
 baseurl: "/opaque_id"
 
-# Just the Docs theme
-theme: just-the-docs
+# Just the Docs theme (via remote_theme for GitHub Pages compatibility)
+remote_theme: just-the-docs/just-the-docs
 
 # GitHub Pages plugins
 plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-remote-theme
 
 # Feed configuration
 feed:
