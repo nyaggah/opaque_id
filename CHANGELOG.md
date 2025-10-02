@@ -5,6 +5,28 @@ All notable changes to the OpaqueId gem will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0](https://github.com/nyaggah/opaque_id/compare/opaque_id/v1.1.0...opaque_id/v1.2.0) (2025-10-02)
+
+
+### Features
+
+* improve generator API and add custom column configuration ([5c1a570](https://github.com/nyaggah/opaque_id/commit/5c1a5703dee269f6985d26096942c086787296f3))
+
+
+### Styles
+
+* improve code formatting in generator ([ce52021](https://github.com/nyaggah/opaque_id/commit/ce52021cd60e3594dc1ee34e5b96d48568008b5a))
+
+
+### Code Refactoring
+
+* improve generator code quality and resolve RuboCop issues ([b658bbc](https://github.com/nyaggah/opaque_id/commit/b658bbcb29f6c0134f2bf256b24c5b3c2bccb265))
+
+
+### Tests
+
+* add test for lowercase model names ([8ef4675](https://github.com/nyaggah/opaque_id/commit/8ef4675a0698d2cda054084360c9e80d956ddb14))
+
 ## [1.1.0](https://github.com/nyaggah/opaque_id/compare/opaque_id-v1.0.2...opaque_id/v1.1.0) (2025-10-02)
 
 
