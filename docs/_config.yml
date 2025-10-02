@@ -111,7 +111,7 @@ header_links:
   - title: "RubyGems"
     url: "https://rubygems.org/gems/opaque_id"
 
-# Auxiliary links
+# Auxiliary links (moved to sidebar top)
 aux_links:
   - title: "GitHub"
     url: "https://github.com/nyaggah/opaque_id"
@@ -122,8 +122,8 @@ aux_links:
   - title: "Releases"
     url: "https://github.com/nyaggah/opaque_id/releases"
 
-# Color scheme
-color_scheme: dark
+# Color scheme - use system theme with light fallback
+color_scheme: light
 
 # Custom CSS
 sass:
