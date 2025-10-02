@@ -145,8 +145,8 @@ compress_html:
 keep_files:
   - assets/images
 
-# Footer
-footer_content: "Copyright © 2025 Joe Nyaggah. Distributed by an MIT license."
+# Footer - using custom include for dynamic year
+footer_content: false
 
 # Exclude from processing
 exclude:
