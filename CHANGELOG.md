@@ -5,6 +5,26 @@ All notable changes to the OpaqueId gem will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0](https://github.com/nyaggah/opaque_id/compare/opaque_id/v1.3.0...opaque_id/v1.4.0) (2025-10-02)
+
+
+### Features
+
+* add external links to sidebar using JavaScript ([cd77079](https://github.com/nyaggah/opaque_id/commit/cd770795936ca76633a18f80cba8482ec09db8e2))
+* add Table of Contents to all documentation pages ([9472175](https://github.com/nyaggah/opaque_id/commit/94721752270211d5b7db460da61d79a8a81218b2))
+* complete Table of Contents implementation ([5b037e4](https://github.com/nyaggah/opaque_id/commit/5b037e42692803204bc4d8991b6d2e0c9639a05c))
+
+
+### Bug Fixes
+
+* correct aux_links configuration format ([61b3fb9](https://github.com/nyaggah/opaque_id/commit/61b3fb9441ce3cfc3cf30637c277d19135f89dab))
+* use correct aux_links format ([d4a4bc0](https://github.com/nyaggah/opaque_id/commit/d4a4bc0c11bc66b661034915b471ed762611d821))
+
+
+### Code Refactoring
+
+* simplify external links implementation ([5cb84c1](https://github.com/nyaggah/opaque_id/commit/5cb84c1e8952a0fd1aa4b9089b9ff11829dc397c))
+
 ## [1.3.0](https://github.com/nyaggah/opaque_id/compare/opaque_id/v1.2.0...opaque_id/v1.3.0) (2025-10-02)
 
 
