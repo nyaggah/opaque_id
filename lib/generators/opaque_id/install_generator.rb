@@ -43,7 +43,7 @@ module OpaqueId
             say "OpaqueId::Model already included in #{model_path}", :yellow
           else
             # Prepare the include statement with optional column configuration
-            include_statement = "  include OpaqueId::Model"
+            include_statement = '  include OpaqueId::Model'
             if options[:column_name] != 'opaque_id'
               include_statement += "\n  self.opaque_id_column = :#{options[:column_name]}"
             end
@@ -55,9 +55,7 @@ module OpaqueId
             # Write back to file
             File.write(model_path, content)
             say "Updated #{model_path}", :green
-            if options[:column_name] != 'opaque_id'
-              say "  Set opaque_id_column to :#{options[:column_name]}", :green
-            end
+            say "  Set opaque_id_column to :#{options[:column_name]}", :green if options[:column_name] != 'opaque_id'
           end
         else
           say "Model file #{model_path} not found. Please add 'include OpaqueId::Model' manually.", :yellow
