@@ -292,61 +292,12 @@ table {
   color: var(--nav-child-link-color);
 }
 
-// Sidebar external links styling
-.sidebar-external-links {
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border-color-light);
-
-  .sidebar-section-title {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--body-heading-color);
-    margin: 0 0 0.75rem 0;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 0 1rem;
-  }
-
-  .sidebar-external-list {
-    list-style: none;
-    margin: 0;
-    padding: 0 1rem;
-
-    .sidebar-external-item {
-      margin: 0 0 0.5rem 0;
-
-      .sidebar-external-link {
-        display: flex;
-        align-items: center;
-        padding: 0.5rem 0.75rem;
-        font-size: 0.875rem;
-        font-weight: 500;
-        color: var(--aux-link-color);
-        text-decoration: none;
-        border: 1px solid var(--border-color);
-        border-radius: 6px;
-        background-color: transparent;
-        transition: all 0.2s ease;
-
-        &:hover {
-          color: var(--aux-link-hover-color);
-          border-color: var(--aux-link-hover-color);
-          background-color: rgba(168, 85, 247, 0.05);
-          text-decoration: none;
-        }
-
-        &:focus {
-          outline: 2px solid var(--aux-link-hover-color);
-          outline-offset: 2px;
-        }
-
-        .sidebar-external-icon {
-          margin-right: 0.5rem;
-          font-size: 1rem;
-        }
-      }
-    }
+// Simple external links styling
+.nav-list .nav-list-item .nav-list-link[href^="http"] {
+  color: var(--link-color);
+  
+  &:hover {
+    color: var(--link-color-hover);
   }
 }
 

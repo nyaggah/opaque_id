@@ -99,7 +99,15 @@ head_scripts:
     </style>
 
 # Navigation
-nav_external_links: true
+nav_external_links:
+  - title: GitHub
+    url: https://github.com/nyaggah/opaque_id
+  - title: RubyGems
+    url: https://rubygems.org/gems/opaque_id
+  - title: Issues
+    url: https://github.com/nyaggah/opaque_id/issues
+  - title: Releases
+    url: https://github.com/nyaggah/opaque_id/releases
 nav_external_links_new_tab: true
 nav_footer: true
 nav_order: 1
