@@ -1,0 +1,161 @@
+# Site settings
+title: OpaqueId Documentation
+description: Generate cryptographically secure, collision-free opaque IDs for ActiveRecord models
+url: "https://nyaggah.github.io"
+baseurl: "/opaque_id"
+
+# Just the Docs theme
+theme: just-the-docs
+
+# GitHub Pages plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Feed configuration
+feed:
+  posts_limit: 10
+  excerpt_only: true
+  path: "feed.xml"
+
+# Sitemap configuration
+sitemap:
+  changefreq: "weekly"
+  priority: 0.5
+  lastmod: true
+
+# Site metadata
+author: Joe Nyaggah
+github_username: nyaggah
+repository: nyaggah/opaque_id
+
+# SEO and social metadata
+lang: en
+locale: en_US
+keywords: ruby, rails, activerecord, opaque-id, nanoid, secure-random, documentation, gem, id-generation, cryptography
+social:
+  name: OpaqueId
+  links:
+    - https://github.com/nyaggah/opaque_id
+    - https://rubygems.org/gems/opaque_id
+
+# SEO configuration
+seo:
+  type: "WebSite"
+  name: "OpaqueId Documentation"
+  description: "Generate cryptographically secure, collision-free opaque IDs for ActiveRecord models"
+  url: "https://nyaggah.github.io/opaque_id"
+  image: "https://nyaggah.github.io/opaque_id/assets/images/og-image.png"
+  twitter:
+    card: "summary_large_image"
+    site: "@nyaggah"
+    creator: "@nyaggah"
+  facebook:
+    app_id: ""
+    publisher: ""
+  google:
+    site_verification: ""
+
+# Permalinks
+permalink: pretty
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:name/
+
+# Just the Docs configuration
+search_enabled: true
+search_tokenizer_separator: /[\s/]+/
+search_placeholder: "Search docs"
+search_show_title: true
+
+# Theme customization
+masthead_title: "OpaqueId"
+masthead_title_url: "/"
+masthead_title_image: false
+
+# Syntax highlighting
+highlighter: rouge
+markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: "highlight"
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+      start_line: 1
+
+# Custom head includes
+head_scripts:
+  - |
+    <style>
+      /* Custom favicon */
+      <link rel="icon" type="image/svg+xml" href="/opaque_id/assets/images/favicon.svg">
+      <link rel="icon" type="image/png" href="/opaque_id/assets/images/favicon.png">
+    </style>
+
+# Navigation
+nav_external_links: true
+nav_external_links_new_tab: true
+nav_footer: true
+nav_order: 1
+
+# Header and footer
+header_links:
+  - title: "GitHub"
+    url: "https://github.com/nyaggah/opaque_id"
+  - title: "RubyGems"
+    url: "https://rubygems.org/gems/opaque_id"
+
+# Auxiliary links
+aux_links:
+  - title: "GitHub"
+    url: "https://github.com/nyaggah/opaque_id"
+  - title: "RubyGems"
+    url: "https://rubygems.org/gems/opaque_id"
+  - title: "Issues"
+    url: "https://github.com/nyaggah/opaque_id/issues"
+  - title: "Releases"
+    url: "https://github.com/nyaggah/opaque_id/releases"
+
+# Color scheme
+color_scheme: dark
+
+# Custom CSS
+sass:
+  sass_dir: assets/css
+  style: compressed
+
+# Performance optimizations
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  startings: [html, head, body]
+  blanklines: false
+  profile: false
+  ignore:
+    envs: all
+
+# Asset optimization
+keep_files:
+  - assets/images
+
+# Footer
+footer_content: "Copyright © 2025 Joe Nyaggah. Distributed by an MIT license."
+
+# Exclude from processing
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

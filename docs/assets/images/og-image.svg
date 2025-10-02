@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c084fc;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Logo -->
+  <circle cx="150" cy="150" r="60" fill="none" stroke="url(#textGradient)" stroke-width="8"/>
+  <circle cx="150" cy="150" r="25" fill="url(#textGradient)"/>
+  
+  <!-- Title -->
+  <text x="300" y="180" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="url(#textGradient)">
+    OpaqueId
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="300" y="240" font-family="Arial, sans-serif" font-size="32" fill="#e0e0e0">
+    Documentation
+  </text>
+  
+  <!-- Description -->
+  <text x="300" y="320" font-family="Arial, sans-serif" font-size="24" fill="#b0b0b0">
+    Generate cryptographically secure, collision-free opaque IDs
+  </text>
+  <text x="300" y="360" font-family="Arial, sans-serif" font-size="24" fill="#b0b0b0">
+    for ActiveRecord models
+  </text>
+  
+  <!-- Features -->
+  <text x="300" y="420" font-family="Arial, sans-serif" font-size="18" fill="#808080">
+    • High Performance  • Rails Integration  • Secure Generation
+  </text>
+  
+  <!-- URL -->
+  <text x="300" y="480" font-family="Arial, sans-serif" font-size="20" fill="#a855f7">
+    nyaggah.github.io/opaque_id
+  </text>
+  
+  <!-- Code example -->
+  <rect x="800" y="200" width="350" height="200" fill="#1a1a1a" stroke="#333333" stroke-width="2" rx="8"/>
+  <text x="820" y="230" font-family="Monaco, monospace" font-size="16" fill="#e0e0e0">
+    class User &lt; ApplicationRecord
+  </text>
+  <text x="820" y="260" font-family="Monaco, monospace" font-size="16" fill="#e0e0e0">
+      include OpaqueId::Model
+  </text>
+  <text x="820" y="290" font-family="Monaco, monospace" font-size="16" fill="#e0e0e0">
+    end
+  </text>
+  <text x="820" y="330" font-family="Monaco, monospace" font-size="16" fill="#a855f7">
+    # user.opaque_id
+  </text>
+  <text x="820" y="360" font-family="Monaco, monospace" font-size="16" fill="#10b981">
+    # =&gt; "V1StGXR8_Z5jdHi6B-myT"
+  </text>
+</svg>

@@ -1,0 +1,132 @@
+# Custom navigation structure for OpaqueId documentation
+# This file provides additional navigation metadata and organization
+
+# Main navigation sections
+main:
+  - title: "Getting Started"
+    url: "/getting-started/"
+    description: "Quick start guide and basic setup"
+    icon: "play"
+
+  - title: "Installation"
+    url: "/installation/"
+    description: "Installation methods and requirements"
+    icon: "download"
+
+  - title: "Usage"
+    url: "/usage/"
+    description: "How to use OpaqueId in your application"
+    icon: "code"
+
+# Configuration section
+configuration:
+  - title: "Configuration"
+    url: "/configuration/"
+    description: "Configuration options and examples"
+    icon: "settings"
+
+  - title: "Alphabets"
+    url: "/alphabets/"
+    description: "Built-in alphabets and custom options"
+    icon: "type"
+
+# Technical section
+technical:
+  - title: "Algorithms"
+    url: "/algorithms/"
+    description: "Technical details of ID generation algorithms"
+    icon: "cpu"
+
+  - title: "Performance"
+    url: "/performance/"
+    description: "Benchmarks and optimization tips"
+    icon: "zap"
+
+  - title: "Security"
+    url: "/security/"
+    description: "Security considerations and best practices"
+    icon: "shield"
+
+# Reference section
+reference:
+  - title: "Use Cases"
+    url: "/use-cases/"
+    description: "Real-world examples and applications"
+    icon: "lightbulb"
+
+  - title: "API Reference"
+    url: "/api-reference/"
+    description: "Complete API documentation"
+    icon: "book"
+
+  - title: "Development"
+    url: "/development/"
+    description: "Contributing and development setup"
+    icon: "tools"
+
+# External links
+external:
+  - title: "GitHub Repository"
+    url: "https://github.com/nyaggah/opaque_id"
+    description: "Source code and issue tracking"
+    icon: "github"
+
+  - title: "RubyGems"
+    url: "https://rubygems.org/gems/opaque_id"
+    description: "Install from RubyGems"
+    icon: "package"
+
+  - title: "Report Issue"
+    url: "https://github.com/nyaggah/opaque_id/issues"
+    description: "Report bugs or request features"
+    icon: "bug"
+
+# Quick links for common tasks
+quick_links:
+  - title: "Quick Start"
+    url: "/getting-started/"
+    description: "Get up and running in 5 minutes"
+
+  - title: "Installation"
+    url: "/installation/"
+    description: "Install the gem"
+
+  - title: "Basic Usage"
+    url: "/usage/"
+    description: "Generate your first opaque ID"
+
+  - title: "Configuration"
+    url: "/configuration/"
+    description: "Customize ID generation"
+
+  - title: "API Reference"
+    url: "/api-reference/"
+    description: "Complete method documentation"
+
+# Related projects and resources
+related:
+  - title: "NanoID (Original)"
+    url: "https://github.com/ai/nanoid"
+    description: "The original NanoID implementation"
+
+  - title: "nanoid.rb"
+    url: "https://github.com/radeno/nanoid.rb"
+    description: "Ruby port of NanoID"
+
+  - title: "PlanetScale Article"
+    url: "https://planetscale.com/blog/why-we-chose-nanoids-for-planetscales-api"
+    description: "Why we chose NanoIDs for PlanetScale's API"
+
+# Footer links
+footer:
+  - title: "License"
+    url: "https://github.com/nyaggah/opaque_id/blob/main/LICENSE.txt"
+    description: "MIT License"
+
+  - title: "Code of Conduct"
+    url: "https://github.com/nyaggah/opaque_id/blob/main/CODE_OF_CONDUCT.md"
+    description: "Contributor Covenant"
+
+  - title: "Changelog"
+    url: "https://github.com/nyaggah/opaque_id/blob/main/CHANGELOG.md"
+    description: "Version history"
