@@ -10,6 +10,9 @@ permalink: /installation/
 
 This guide covers all installation methods for OpaqueId, from basic setup to advanced configurations.
 
+- TOC
+  {:toc}
+
 ## Requirements
 
 Before installing OpaqueId, ensure your environment meets these requirements:

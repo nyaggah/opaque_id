@@ -10,6 +10,9 @@ permalink: /configuration/
 
 OpaqueId provides extensive configuration options to customize ID generation for your specific needs. This guide covers all available configuration options with practical examples.
 
+- TOC
+  {:toc}
+
 ## Model-Level Configuration
 
 Configure OpaqueId on a per-model basis using class-level settings.

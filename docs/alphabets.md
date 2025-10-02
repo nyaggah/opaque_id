@@ -10,6 +10,9 @@ permalink: /alphabets/
 
 OpaqueId provides flexible alphabet configuration for generating IDs with different character sets. This guide covers built-in alphabets, custom alphabet creation, and best practices for alphabet selection.
 
+- TOC
+  {:toc}
+
 ## Built-in Alphabets
 
 OpaqueId comes with two pre-configured alphabets optimized for different use cases.

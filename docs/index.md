@@ -14,6 +14,9 @@ permalink: /
 
 A Ruby gem for generating cryptographically secure, collision-free opaque IDs for ActiveRecord models. OpaqueId provides a drop-in replacement for `nanoid.rb` using Ruby's built-in `SecureRandom` methods with optimized algorithms for unbiased distribution.
 
+- TOC
+  {:toc}
+
 ## Features
 
 - **🔐 Cryptographically Secure**: Uses Ruby's `SecureRandom` for secure ID generation

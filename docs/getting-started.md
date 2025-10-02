@@ -10,6 +10,9 @@ permalink: /getting-started/
 
 This guide will help you get up and running with OpaqueId in your Rails application. We'll cover installation, basic setup, and common usage patterns.
 
+- TOC
+  {:toc}
+
 ## Prerequisites
 
 Before you begin, ensure you have:
