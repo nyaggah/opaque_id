@@ -104,13 +104,6 @@ nav_external_links_new_tab: true
 nav_footer: true
 nav_order: 1
 
-# Auxiliary links (appear at top right of all pages)
-aux_links:
-  GitHub: https://github.com/nyaggah/opaque_id
-  RubyGems: https://rubygems.org/gems/opaque_id
-  Issues: https://github.com/nyaggah/opaque_id/issues
-  Releases: https://github.com/nyaggah/opaque_id/releases
-
 # Color scheme - use system theme with light fallback
 color_scheme: light
 
