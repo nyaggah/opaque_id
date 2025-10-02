@@ -1,5 +1,5 @@
 # Site settings
-title: OpaqueId Documentation
+title: OpaqueId
 description: Generate cryptographically secure, collision-free opaque IDs for ActiveRecord models
 url: "https://nyaggah.github.io"
 baseurl: "/opaque_id"
@@ -104,23 +104,12 @@ nav_external_links_new_tab: true
 nav_footer: true
 nav_order: 1
 
-# Header and footer
-header_links:
-  - title: "GitHub"
-    url: "https://github.com/nyaggah/opaque_id"
-  - title: "RubyGems"
-    url: "https://rubygems.org/gems/opaque_id"
-
-# Auxiliary links (moved to sidebar top)
+# Auxiliary links (appear at top right of all pages)
 aux_links:
-  - title: "GitHub"
-    url: "https://github.com/nyaggah/opaque_id"
-  - title: "RubyGems"
-    url: "https://rubygems.org/gems/opaque_id"
-  - title: "Issues"
-    url: "https://github.com/nyaggah/opaque_id/issues"
-  - title: "Releases"
-    url: "https://github.com/nyaggah/opaque_id/releases"
+  GitHub: https://github.com/nyaggah/opaque_id
+  RubyGems: https://rubygems.org/gems/opaque_id
+  Issues: https://github.com/nyaggah/opaque_id/issues
+  Releases: https://github.com/nyaggah/opaque_id/releases
 
 # Color scheme - use system theme with light fallback
 color_scheme: light
