@@ -11,7 +11,7 @@ permalink: /api-reference/
 This document provides complete API documentation for OpaqueId, including all methods, classes, and configuration options.
 
 - TOC
-{:toc}
+  {:toc}
 
 ## Core Module: OpaqueId
 

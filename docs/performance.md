@@ -11,7 +11,7 @@ permalink: /performance/
 OpaqueId is designed for high performance with optimized algorithms and efficient memory usage. This guide covers benchmarks, optimization strategies, and scalability considerations.
 
 - TOC
-{:toc}
+  {:toc}
 
 ## Performance Characteristics
 

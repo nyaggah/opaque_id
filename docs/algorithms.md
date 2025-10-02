@@ -11,7 +11,7 @@ permalink: /algorithms/
 OpaqueId uses sophisticated algorithms to generate cryptographically secure, collision-free opaque IDs. This guide explains the technical details behind the generation process, optimization strategies, and mathematical foundations.
 
 - TOC
-{:toc}
+  {:toc}
 
 ## Overview
 

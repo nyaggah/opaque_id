@@ -11,7 +11,7 @@ permalink: /development/
 This guide covers development setup, guidelines, and contribution information for OpaqueId. Whether you're contributing to the project or developing applications that use OpaqueId, this guide will help you get started.
 
 - TOC
-{:toc}
+  {:toc}
 
 ## Prerequisites
 

@@ -11,7 +11,7 @@ permalink: /use-cases/
 OpaqueId is designed for a wide range of applications where secure, unpredictable identifiers are needed. This guide covers real-world use cases with practical examples and implementation patterns.
 
 - TOC
-{:toc}
+  {:toc}
 
 ## E-Commerce Applications
 

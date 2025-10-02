@@ -11,7 +11,7 @@ permalink: /usage/
 This guide covers all usage patterns for OpaqueId, from basic standalone generation to advanced ActiveRecord integration.
 
 - TOC
-{:toc}
+  {:toc}
 
 ## Standalone ID Generation
 

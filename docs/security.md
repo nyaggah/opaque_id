@@ -11,7 +11,7 @@ permalink: /security/
 OpaqueId is designed with security as a primary concern, providing cryptographically secure ID generation with protection against various attack vectors. This guide covers security considerations, best practices, and threat model analysis.
 
 - TOC
-{:toc}
+  {:toc}
 
 ## Cryptographic Security
 
