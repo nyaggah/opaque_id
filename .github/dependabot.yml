@@ -1,0 +1,44 @@
+version: 2
+updates:
+  # Enable version updates for Bundler
+  - package-ecosystem: "bundler"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "America/New_York"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "nyaggah"
+    assignees:
+      - "nyaggah"
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "ruby"
+    # Allow both direct and indirect updates
+    allow:
+      - dependency-type: "direct"
+      - dependency-type: "indirect"
+    # Group updates by dependency type
+    groups:
+      development-dependencies:
+        patterns:
+          - "rubocop*"
+          - "rake*"
+          - "sqlite3*"
+          - "rails*"
+        update-types:
+          - "minor"
+          - "patch"
+      production-dependencies:
+        patterns:
+          - "activerecord*"
+          - "activesupport*"
+        update-types:
+          - "minor"
+          - "patch"

@@ -1,0 +1,48 @@
+# Bundler
+/.bundle/
+/vendor/bundle/
+
+# Documentation
+/.yardoc
+/_yardoc/
+/doc/
+/coverage/
+
+# Build artifacts
+/pkg/
+*.gem
+
+# Test artifacts
+/spec/reports/
+/test/tmp/
+
+# Temporary files
+/tmp/
+/log/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+/.idea/
+/.vscode/
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.*
+*.key
+*.pem
+*.cert
+
+# Rails specific (if any)
+/config/credentials.yml.enc
+/config/master.key
+
+# Cursor local state (keep rules)
+.cursor/*
+!/.cursor/rules/
+!/.cursor/modes/
+

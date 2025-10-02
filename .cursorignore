@@ -1,0 +1,55 @@
+# === Ignore build / generated artifacts & temp ===
+/log/
+/tmp/
+/vendor/bundle/
+/node_modules/
+/public/packs/
+/public/assets/
+/coverage/
+/spec/tmp/
+/test/tmp/
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ruby gem build artifacts
+*.gem
+pkg/
+/pkg/*
+
+# Rails / Ruby cached / compiled files
+*.rbc
+*.sassc
+*.css.map
+.byebug_history
+.rspec_local_profile
+sinatra.cache
+
+# config / secrets / credentials
+/config/credentials.yml.enc
+/config/master.key
+.env
+.env.* 
+*.key
+*.pem
+*.cert
+
+# IDE / editor / OS noise
+/.idea/
+/.vscode/
+/*.swp
+/*.swo
+.DS_Store
+Thumbs.db
+
+# Cursor local state except for rules / modes
+.cursor/*
+!/.cursor/rules/
+!/.cursor/modes/
+
+# Additional gem-specific ignores
+*.gem
+/pkg/
+Gemfile.lock
+
+# Optional: If you expect cursorindexing-specific control:
+# you might also add entries to `.cursorindexingignore` (inherited from gitignore) per docs

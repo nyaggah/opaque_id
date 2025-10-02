@@ -1,0 +1,31 @@
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+
+# Disable some cops that are too strict for this gem
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - "test/**/*"
+
+Metrics/AbcSize:
+  Max: 20
+  Exclude:
+    - "test/**/*"
+
+Metrics/ModuleLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Max: 70
+
+Metrics/ClassLength:
+  Max: 200
+  Exclude:
+    - "test/**/*"
+
+Gemspec/DevelopmentDependencies:
+  Enabled: false
