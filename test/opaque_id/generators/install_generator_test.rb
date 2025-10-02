@@ -38,18 +38,18 @@ class InstallGeneratorTest < Minitest::Test
 
   private
 
-  def create_generator(table_name = 'users', options = {})
-    OpaqueId::Generators::InstallGenerator.new([table_name], options)
+  def create_generator(model_name = 'User', options = {})
+    OpaqueId::Generators::InstallGenerator.new([model_name], options)
   end
 
-  def test_generator_requires_table_name_argument
+  def test_generator_requires_model_name_argument
     assert_raises(ArgumentError) do
       OpaqueId::Generators::InstallGenerator.new.invoke_all
     end
   end
 
   def test_generator_creates_migration_file
-    generator = create_generator('users')
+    generator = create_generator('User')
     generator.invoke_all
 
     migration_files = Dir.glob('db/migrate/*_add_opaque_id_to_users.rb')
@@ -62,7 +62,7 @@ class InstallGeneratorTest < Minitest::Test
   end
 
   def test_generator_creates_migration_with_custom_column_name
-    generator = create_generator('users', { column_name: 'public_id' })
+    generator = create_generator('User', { column_name: 'public_id' })
     generator.invoke_all
 
     migration_files = Dir.glob('db/migrate/*_add_opaque_id_to_users.rb')
@@ -73,7 +73,7 @@ class InstallGeneratorTest < Minitest::Test
   end
 
   def test_generator_adds_include_to_model_file
-    generator = create_generator('users')
+    generator = create_generator('User')
     generator.invoke_all
 
     model_content = File.read('app/models/user.rb')
@@ -81,23 +81,41 @@ class InstallGeneratorTest < Minitest::Test
   end
 
   def test_generator_handles_model_file_not_found
-    generator = create_generator('nonexistent')
+    generator = create_generator('Nonexistent')
     generator.invoke_all
 
     # Should not raise error, just skip model modification
     # Migration should still be created
-    migration_files = Dir.glob('db/migrate/*_add_opaque_id_to_nonexistent.rb')
+    migration_files = Dir.glob('db/migrate/*_add_opaque_id_to_nonexistents.rb')
     assert_equal 1, migration_files.length
   end
 
   def test_generator_handles_already_included_concern
-    generator = create_generator('posts')
+    generator = create_generator('Post')
     generator.invoke_all
 
     model_content = File.read('app/models/post.rb')
     # Should not duplicate the include statement
     include_count = model_content.scan('include OpaqueId::Model').length
     assert_equal 1, include_count
+  end
+
+  def test_generator_adds_custom_column_configuration
+    generator = create_generator('User', { column_name: 'public_id' })
+    generator.invoke_all
+
+    model_content = File.read('app/models/user.rb')
+    assert_includes model_content, 'include OpaqueId::Model'
+    assert_includes model_content, 'self.opaque_id_column = :public_id'
+  end
+
+  def test_generator_does_not_add_column_configuration_for_default_column
+    generator = create_generator('User', { column_name: 'opaque_id' })
+    generator.invoke_all
+
+    model_content = File.read('app/models/user.rb')
+    assert_includes model_content, 'include OpaqueId::Model'
+    refute_includes model_content, 'self.opaque_id_column = :opaque_id'
   end
 
   def test_generator_handles_different_class_names
