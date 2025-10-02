@@ -118,6 +118,15 @@ class InstallGeneratorTest < Minitest::Test
     refute_includes model_content, 'self.opaque_id_column = :opaque_id'
   end
 
+  def test_generator_accepts_lowercase_model_names
+    generator = create_generator('user', { column_name: 'public_id' })
+    generator.invoke_all
+
+    model_content = File.read('app/models/user.rb')
+    assert_includes model_content, 'include OpaqueId::Model'
+    assert_includes model_content, 'self.opaque_id_column = :public_id'
+  end
+
   def test_generator_handles_different_class_names
     # Create a model with different class name than table name
     File.write('app/models/admin_user.rb', <<~RUBY)
