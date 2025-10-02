@@ -34,32 +34,38 @@ module OpaqueId
       def add_include_to_model
         model_path = "app/models/#{model_name.underscore}.rb"
 
-        if File.exist?(model_path)
-          # Read existing model file
-          content = File.read(model_path)
-
-          # Check if already included
-          if content.include?('include OpaqueId::Model')
-            say "OpaqueId::Model already included in #{model_path}", :yellow
-          else
-            # Prepare the include statement with optional column configuration
-            include_statement = '  include OpaqueId::Model'
-            if options[:column_name] != 'opaque_id'
-              include_statement += "\n  self.opaque_id_column = :#{options[:column_name]}"
-            end
-
-            # Add include statement and column configuration
-            content.gsub!(/class #{model_name} < ApplicationRecord/,
-                          "class #{model_name} < ApplicationRecord\n#{include_statement}")
-
-            # Write back to file
-            File.write(model_path, content)
-            say "Updated #{model_path}", :green
-            say "  Set opaque_id_column to :#{options[:column_name]}", :green if options[:column_name] != 'opaque_id'
-          end
-        else
+        unless File.exist?(model_path)
           say "Model file #{model_path} not found. Please add 'include OpaqueId::Model' manually.", :yellow
+          return
         end
+
+        content = File.read(model_path)
+        if content.include?('include OpaqueId::Model')
+          say "OpaqueId::Model already included in #{model_path}", :yellow
+          return
+        end
+
+        update_model_file(model_path, content)
+      end
+
+      def update_model_file(model_path, content)
+        include_statement = build_include_statement
+        updated_content = content.gsub(/class #{model_name} < ApplicationRecord/,
+                                       "class #{model_name} < ApplicationRecord\n#{include_statement}")
+
+        File.write(model_path, updated_content)
+        say "Updated #{model_path}", :green
+        say "  Set opaque_id_column to :#{options[:column_name]}", :green if custom_column?
+      end
+
+      def build_include_statement
+        statement = '  include OpaqueId::Model'
+        statement += "\n  self.opaque_id_column = :#{options[:column_name]}" if custom_column?
+        statement
+      end
+
+      def custom_column?
+        options[:column_name] != 'opaque_id'
       end
     end
   end
