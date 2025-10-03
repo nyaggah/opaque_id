@@ -5,6 +5,36 @@ All notable changes to the OpaqueId gem will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0](https://github.com/nyaggah/opaque_id/compare/opaque_id/v1.4.0...opaque_id/v1.5.0) (2025-10-03)
+
+
+### Features
+
+* add SLUG_LIKE_ALPHABET as default for URL-safe IDs ([1e52b17](https://github.com/nyaggah/opaque_id/commit/1e52b174d70ca72b74badf399401605b307e3604))
+
+
+### Bug Fixes
+
+* resolve TOC rendering and improve workflow configuration ([244d532](https://github.com/nyaggah/opaque_id/commit/244d5321e5b18091d8599bd772a28f5a30239c80))
+
+
+### Documentation
+
+* final cleanup of over-inflated claims ([795b5b0](https://github.com/nyaggah/opaque_id/commit/795b5b0071a098f718a40e84e81ceba4525b8d3b))
+* tone down over-inflated claims and remove unsubstantiated benchmarks ([6536b87](https://github.com/nyaggah/opaque_id/commit/6536b87f9a9c2049497328319641ff21368c6032))
+* tone down pretentious language in algorithms intro ([58c0caf](https://github.com/nyaggah/opaque_id/commit/58c0caf116228401b6218ec589a35b350d068b49))
+
+
+### Miscellaneous Chores
+
+* remove tasks/ directory from source control ([e007ead](https://github.com/nyaggah/opaque_id/commit/e007ead90fa3fbb62ab17e334563e69899afb259))
+
+
+### Tests
+
+* update tests for SLUG_LIKE_ALPHABET defaults ([d7296c7](https://github.com/nyaggah/opaque_id/commit/d7296c77b1b7a995e7a42b3ba546fdeb8e41c297))
+* update tests for SLUG_LIKE_ALPHABET defaults ([d1f8f26](https://github.com/nyaggah/opaque_id/commit/d1f8f26e7be80f6cbefc98563c0ffa45033372dc))
+
 ## [1.4.0](https://github.com/nyaggah/opaque_id/compare/opaque_id/v1.3.0...opaque_id/v1.4.0) (2025-10-02)
 
 
