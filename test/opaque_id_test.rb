@@ -9,14 +9,14 @@ class OpaqueIdTest < Minitest::Test
 
   def test_generate_with_default_parameters
     id = OpaqueId.generate
-    assert_equal 21, id.length
-    assert_match(/\A[A-Za-z0-9]+\z/, id)
+    assert_equal 18, id.length
+    assert_match(/\A[0-9a-z]+\z/, id)
   end
 
   def test_generate_with_custom_size
     id = OpaqueId.generate(size: 10)
     assert_equal 10, id.length
-    assert_match(/\A[A-Za-z0-9]+\z/, id)
+    assert_match(/\A[0-9a-z]+\z/, id)
   end
 
   def test_generate_with_custom_alphabet
@@ -28,7 +28,7 @@ class OpaqueIdTest < Minitest::Test
 
   def test_generate_with_standard_alphabet
     id = OpaqueId.generate(alphabet: OpaqueId::STANDARD_ALPHABET)
-    assert_equal 21, id.length
+    assert_equal 18, id.length
     assert_match(/\A[A-Za-z0-9_-]+\z/, id)
   end
 
@@ -36,6 +36,9 @@ class OpaqueIdTest < Minitest::Test
     id1 = OpaqueId.generate
     id2 = OpaqueId.generate
     refute_equal id1, id2
+    # Both should use default slug-like alphabet
+    assert_match(/\A[0-9a-z]+\z/, id1)
+    assert_match(/\A[0-9a-z]+\z/, id2)
   end
 
   def test_generate_with_zero_size_raises_error
@@ -63,6 +66,7 @@ class OpaqueIdTest < Minitest::Test
   end
 
   def test_alphabet_constants_are_defined
+    assert_equal 36, OpaqueId::SLUG_LIKE_ALPHABET.length
     assert_equal 64, OpaqueId::STANDARD_ALPHABET.length
     assert_equal 62, OpaqueId::ALPHANUMERIC_ALPHABET.length
   end
@@ -70,6 +74,11 @@ class OpaqueIdTest < Minitest::Test
   def test_standard_alphabet_contains_expected_characters
     expected_chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_'
     assert_equal expected_chars, OpaqueId::STANDARD_ALPHABET
+  end
+
+  def test_slug_like_alphabet_contains_expected_characters
+    expected_chars = '0123456789abcdefghijklmnopqrstuvwxyz'
+    assert_equal expected_chars, OpaqueId::SLUG_LIKE_ALPHABET
   end
 
   def test_alphanumeric_alphabet_contains_expected_characters
@@ -168,7 +177,7 @@ class OpaqueIdTest < Minitest::Test
     # Test that large sizes work (though not recommended in practice)
     id = OpaqueId.generate(size: 1000)
     assert_equal 1000, id.length
-    assert_match(/\A[A-Za-z0-9]+\z/, id)
+    assert_match(/\A[0-9a-z]+\z/, id)
   end
 
   def test_generate_with_single_character_alphabet
