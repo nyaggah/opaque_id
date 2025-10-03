@@ -4,7 +4,7 @@
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 [![Gem Downloads](https://img.shields.io/gem/dt/opaque_id)](https://rubygems.org/gems/opaque_id)
 
-A Ruby gem for generating cryptographically secure, collision-free opaque IDs for ActiveRecord models. OpaqueId provides a drop-in replacement for `nanoid.rb` using Ruby's built-in `SecureRandom` methods with optimized algorithms for unbiased distribution.
+A simple Ruby gem for generating secure, opaque IDs for ActiveRecord models. OpaqueId provides a drop-in replacement for `nanoid.rb` using Ruby's built-in `SecureRandom` methods with optimized algorithms for uniform distribution.
 
 ## Table of Contents
 
@@ -87,12 +87,12 @@ A Ruby gem for generating cryptographically secure, collision-free opaque IDs fo
 ## Features
 
 - **🔐 Cryptographically Secure**: Uses Ruby's `SecureRandom` for secure ID generation
-- **⚡ High Performance**: Optimized algorithms with fast paths for 64-character alphabets
-- **🎯 Collision-Free**: Built-in collision detection with configurable retry attempts
+- **⚡ Performance Optimized**: Efficient algorithms with fast paths for 64-character alphabets
+- **🎯 Collision Resistant**: Built-in collision detection with configurable retry attempts
 - **🔧 Highly Configurable**: Customizable alphabet, length, column name, and validation rules
-- **🚀 Rails Integration**: Seamless ActiveRecord integration with automatic ID generation
+- **🚀 Rails Integration**: ActiveRecord integration with automatic ID generation
 - **📦 Rails Generator**: One-command setup with `rails generate opaque_id:install`
-- **🧪 Well Tested**: Comprehensive test suite with statistical uniformity tests
+- **🧪 Tested**: Includes test suite with statistical uniformity tests
 - **📚 Rails 8.0+ Compatible**: Built for modern Rails applications
 
 ## Installation
@@ -932,41 +932,14 @@ def generate(size:, alphabet:)
 end
 ```
 
-## Performance Benchmarks
+## Performance Characteristics
 
-### Generation Speed (IDs per second)
+OpaqueId is designed for efficient ID generation with different performance characteristics based on alphabet size:
 
-| Alphabet Size | Algorithm | Performance        | Relative Speed  |
-| ------------- | --------- | ------------------ | --------------- |
-| 64 characters | Fast Path | ~2,500,000 IDs/sec | 100% (baseline) |
-| 62 characters | Unbiased  | ~1,200,000 IDs/sec | 48%             |
-| 36 characters | Unbiased  | ~1,100,000 IDs/sec | 44%             |
-| 26 characters | Unbiased  | ~1,000,000 IDs/sec | 40%             |
-| 10 characters | Unbiased  | ~900,000 IDs/sec   | 36%             |
-
-_Benchmarks run on Ruby 3.2.0, generating 21-character IDs_
-
-### Memory Usage
-
-| Algorithm | Memory per ID | Memory per 1M IDs |
-| --------- | ------------- | ----------------- |
-| Fast Path | ~21 bytes     | ~21 MB            |
-| Unbiased  | ~21 bytes     | ~21 MB            |
-
-_Memory usage is consistent regardless of algorithm choice_
-
-### Collision Probability
-
-For 21-character IDs with different alphabets:
-
-| Alphabet              | Characters | Collision Probability (1 in) |
-| --------------------- | ---------- | ---------------------------- |
-| STANDARD_ALPHABET     | 64         | 2.9 × 10^37                  |
-| ALPHANUMERIC_ALPHABET | 62         | 1.4 × 10^37                  |
-| Numeric (0-9)         | 10         | 1.0 × 10^21                  |
-| Binary (0-1)          | 2          | 2.1 × 10^6                   |
-
-_Collision probability calculated using birthday paradox formula_
+- **64-character alphabets**: Use optimized bitwise operations for faster generation
+- **Other alphabets**: Use rejection sampling for unbiased distribution with slight overhead
+- **Memory usage**: Scales linearly with ID length
+- **Collision resistance**: Extremely low probability for typical use cases
 
 ### Performance Characteristics
 
@@ -975,7 +948,7 @@ _Collision probability calculated using birthday paradox formula_
 - **Time Complexity**: O(n) where n = ID length
 - **Space Complexity**: O(n)
 - **Rejection Rate**: 0% (no rejections)
-- **Distribution**: Perfect uniform
+- **Distribution**: Uniform distribution
 - **Best For**: High-performance applications, short URLs
 
 #### Unbiased Path (other alphabets)
@@ -983,7 +956,7 @@ _Collision probability calculated using birthday paradox formula_
 - **Time Complexity**: O(n × (1 + rejection_rate)) where rejection_rate ≈ 0.01
 - **Space Complexity**: O(n)
 - **Rejection Rate**: <1% for most alphabet sizes
-- **Distribution**: Perfect uniform (mathematically proven)
+- **Distribution**: Uniform distribution using rejection sampling
 - **Best For**: General-purpose applications, custom alphabets
 
 ### Real-World Performance
