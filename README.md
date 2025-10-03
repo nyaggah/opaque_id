@@ -4,7 +4,7 @@
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 [![Gem Downloads](https://img.shields.io/gem/dt/opaque_id)](https://rubygems.org/gems/opaque_id)
 
-A simple Ruby gem for generating secure, opaque IDs for ActiveRecord models. OpaqueId provides a drop-in replacement for `nanoid.rb` using Ruby's built-in `SecureRandom` methods with optimized algorithms for uniform distribution.
+A simple Ruby gem for generating secure, opaque IDs for ActiveRecord models. OpaqueId provides a drop-in replacement for `nanoid.rb` using Ruby's built-in `SecureRandom` methods, with slug-like IDs as the default for optimal URL safety and user experience.
 
 ## Table of Contents
 
@@ -176,14 +176,33 @@ end
 
 # IDs are automatically generated on creation
 user = User.create!(name: "John Doe")
-puts user.opaque_id  # => "V1StGXR8_Z5jdHi6B-myT"
+puts user.opaque_id  # => "izkpm55j334u8x9y2"
 
 # Find by opaque ID
-user = User.find_by_opaque_id("V1StGXR8_Z5jdHi6B-myT")
-user = User.find_by_opaque_id!("V1StGXR8_Z5jdHi6B-myT")  # raises if not found
+user = User.find_by_opaque_id("izkpm55j334u8x9y2")
+user = User.find_by_opaque_id!("izkpm55j334u8x9y2")  # raises if not found
 ```
 
 ## Usage
+
+### URL-Safe, Double-Click Selectable IDs
+
+OpaqueId defaults to generating **slug-like IDs** that are perfect for URLs and user-facing identifiers:
+
+- **URL-safe**: No special characters that need encoding
+- **Double-click selectable**: Users can easily select the entire ID
+- **Shorter than UUIDs**: 18 characters vs 36 for UUIDs
+- **Collision resistant**: Built on Ruby's `SecureRandom` for security
+
+```ruby
+# Default generation creates slug-like IDs
+id = OpaqueId.generate
+# => "izkpm55j334u8x9y2"  # Perfect for URLs and user selection
+
+# Compare to UUIDs
+uuid = SecureRandom.uuid
+# => "7cb776c5-8c12-4b1a-84aa-9941b815d873"  # Harder to select, longer
+```
 
 ### Standalone ID Generation
 
@@ -192,13 +211,13 @@ OpaqueId can be used independently of ActiveRecord for generating secure IDs in 
 #### Basic Usage
 
 ```ruby
-# Generate with default settings (21 characters, alphanumeric)
+# Generate with default settings (18 characters, slug-like)
 id = OpaqueId.generate
-# => "V1StGXR8_Z5jdHi6B-myT"
+# => "izkpm55j334u8x9y2"
 
 # Custom length
 id = OpaqueId.generate(size: 10)
-# => "V1StGXR8_Z5"
+# => "izkpm55j334u"
 
 # Custom alphabet
 id = OpaqueId.generate(alphabet: OpaqueId::STANDARD_ALPHABET)
@@ -210,7 +229,7 @@ id = OpaqueId.generate(size: 8, alphabet: "ABCDEFGH")
 
 # Generate multiple IDs
 ids = 5.times.map { OpaqueId.generate(size: 8) }
-# => ["V1StGXR8", "Z5jdHi6B", "myT12345", "ABCdefGH", "IJKlmnoP"]
+# => ["izkpm55j", "334u8x9y", "2abc1234", "def5678g", "hij9klmn"]
 ```
 
 #### Standalone Use Cases
@@ -229,7 +248,7 @@ class BackgroundJob
 end
 
 job_id = BackgroundJob.enqueue(ProcessDataJob, user_id: 123)
-# => "V1StGXR8_Z5jd"
+# => "izkpm55j334u8x9y2"
 ```
 
 ##### Temporary File Names
@@ -243,7 +262,7 @@ def create_temp_file(content)
 end
 
 filename = create_temp_file("Hello World")
-# => "temp_V1StGXR8.txt"
+# => "temp_izkpm55j334u8x9y2.txt"
 ```
 
 ##### Cache Keys
@@ -264,7 +283,7 @@ user_key = CacheManager.user_cache_key(123)
 # => "user:V1StGX:123"
 
 session_key = CacheManager.session_cache_key
-# => "session:V1StGXR8_Z5jdHi6B"
+# => "session:izkpm55j334u8x9y2"
 ```
 
 ##### Webhook Signatures
@@ -281,7 +300,7 @@ class WebhookService
 end
 
 signature = WebhookService.generate_signature({ user_id: 123 })
-# => "1703123456:V1StGXR8_Z5jdHi6B:1234567890"
+# => "1703123456:izkpm55j334u8x9y2:1234567890"
 ```
 
 ##### Database Migration IDs
@@ -309,7 +328,7 @@ class EmailService
 end
 
 tracking_id = EmailService.tracking_pixel_id
-# => "V1StGXR8Z5jdHi6BmyT12"
+# => "izkpm55j334u8x9y2abc"
 
 # Use in email template
 # <img src="https://example.com/track/#{tracking_id}" width="1" height="1" />
@@ -328,7 +347,7 @@ class ApiLogger
 end
 
 request_id = ApiLogger.log_request("/api/users", { page: 1 })
-# => "V1StGXR8_Z5jd"
+# => "izkpm55j334u8x9y2"
 ```
 
 ##### Batch Processing IDs
@@ -350,9 +369,9 @@ class BatchProcessor
 end
 
 batch_id = BatchProcessor.process_batch([1, 2, 3, 4, 5])
-# => "V1StGXR8_Z5"
-# => Processing item V1StGXR8_Z5_000: 1
-# => Processing item V1StGXR8_Z5_001: 2
+# => "izkpm55j334u8x9y2"
+# => Processing item izkpm55j334u8x9y2_000: 1
+# => Processing item izkpm55j334u8x9y2_001: 2
 # => ...
 ```
 
@@ -417,7 +436,7 @@ end
 
 # Create a new post - opaque_id is automatically generated
 post = Post.create!(title: "Hello World", content: "This is my first post")
-puts post.opaque_id  # => "V1StGXR8_Z5jdHi6B-myT"
+puts post.opaque_id  # => "izkpm55j334u8x9y2"
 
 # Create multiple posts
 posts = Post.create!([
@@ -427,9 +446,9 @@ posts = Post.create!([
 ])
 
 posts.each { |p| puts "#{p.title}: #{p.opaque_id}" }
-# => Post 1: V1StGXR8_Z5jdHi6B-myT
-# => Post 2: Z5jdHi6B-myT12345
-# => Post 3: myT12345-ABCdefGH
+# => Post 1: izkpm55j334u8x9y2
+# => Post 2: 334u8x9y2abc1234
+# => Post 3: abc1234def5678gh
 ```
 
 #### Custom Configuration
@@ -482,7 +501,7 @@ class ApiKey < ApplicationRecord
   self.opaque_id_max_retry = 10
 end
 
-# Generated API keys will look like: "V1StGXR8Z5jdHi6BmyT1234567890AB"
+# Generated API keys will look like: "izkpm55j334u8x9y2abc1234def5678gh"
 ```
 
 ##### Short URL Configuration
@@ -529,7 +548,7 @@ class Upload < ApplicationRecord
   self.opaque_id_purge_chars = ['/', '\\', ':', '*', '?', '"', '<', '>', '|']
 end
 
-# Generated filenames will look like: "V1StGXR8-Z5jd"
+# Generated filenames will look like: "izkpm55j334u8x9y2"
 ```
 
 ##### Session Token Configuration
@@ -554,7 +573,7 @@ class Session < ApplicationRecord
   self.opaque_id_max_retry = 8
 end
 
-# Generated session tokens will look like: "V1StGXR8_Z5jdHi6B-myT123"
+# Generated session tokens will look like: "izkpm55j334u8x9y2abc123"
 ```
 
 ##### Custom Alphabet Examples
@@ -592,7 +611,7 @@ end
 
 ```ruby
 # Find by opaque ID (returns nil if not found)
-user = User.find_by_opaque_id("V1StGXR8_Z5jdHi6B-myT")
+user = User.find_by_opaque_id("izkpm55j334u8x9y2")
 if user
   puts "Found user: #{user.name}"
 else
@@ -600,14 +619,14 @@ else
 end
 
 # Find by opaque ID (raises ActiveRecord::RecordNotFound if not found)
-user = User.find_by_opaque_id!("V1StGXR8_Z5jdHi6B-myT")
+user = User.find_by_opaque_id!("izkpm55j334u8x9y2")
 puts "Found user: #{user.name}"
 
 # Use in controllers for public-facing URLs
 class PostsController < ApplicationController
   def show
     @post = Post.find_by_opaque_id!(params[:id])
-    # This allows URLs like /posts/V1StGXR8_Z5jdHi6B-myT
+    # This allows URLs like /posts/izkpm55j334u8x9y2
   end
 end
 
@@ -672,8 +691,8 @@ OpaqueId provides comprehensive configuration options to customize ID generation
 - **Performance**: Longer IDs are more secure but use more storage
 - **Examples**:
   - `6` → Short URLs: `"V1StGX"`
-  - `21` → Default: `"V1StGXR8_Z5jdHi6B-myT"`
-  - `32` → API Keys: `"V1StGXR8_Z5jdHi6B-myT1234567890AB"`
+  - `18` → Default: `"izkpm55j334u8x9y2"`
+  - `32` → API Keys: `"izkpm55j334u8x9y2abc1234def5678gh"`
 
 #### `opaque_id_alphabet`
 
@@ -691,7 +710,7 @@ OpaqueId provides comprehensive configuration options to customize ID generation
 - **Purpose**: Ensures IDs start with a letter for better readability
 - **Use Cases**: When IDs are user-facing or need to be easily readable
 - **Performance**: Slight overhead due to rejection sampling
-- **Example**: `true` → `"V1StGXR8_Z5jdHi6B-myT"`, `false` → `"1StGXR8_Z5jdHi6B-myT"`
+- **Example**: `true` → `"izkpm55j334u8x9y2"`, `false` → `"zkpm55j334u8x9y2"`
 
 #### `opaque_id_purge_chars`
 
@@ -744,7 +763,7 @@ OpaqueId::ALPHANUMERIC_ALPHABET
 
 ```ruby
 OpaqueId.generate(size: 8, alphabet: OpaqueId::ALPHANUMERIC_ALPHABET)
-# => "V1StGXR8"
+# => "izkpm55j"
 ```
 
 ### `STANDARD_ALPHABET`

@@ -20,9 +20,9 @@ OpaqueId can be used independently of ActiveRecord for generating secure, random
 ### Basic Usage
 
 ```ruby
-# Generate a default opaque ID (21 characters, alphanumeric)
+# Generate a default opaque ID (18 characters, slug-like)
 id = OpaqueId.generate
-# => "V1StGXR8_Z5jdHi6B-myT"
+# => "izkpm55j334u8x9y2"
 
 # Generate multiple IDs
 ids = 5.times.map { OpaqueId.generate }
@@ -34,15 +34,15 @@ ids = 5.times.map { OpaqueId.generate }
 ```ruby
 # Custom length
 id = OpaqueId.generate(size: 10)
-# => "V1StGXR8_Z5"
+# => "izkpm55j334u"
 
 # Custom alphabet
 id = OpaqueId.generate(alphabet: OpaqueId::STANDARD_ALPHABET)
-# => "V1StGXR8_Z5jdHi6B-myT"
+# => "izkpm55j334u8x9y2"
 
 # Both custom length and alphabet
 id = OpaqueId.generate(size: 15, alphabet: OpaqueId::STANDARD_ALPHABET)
-# => "V1StGXR8_Z5jdHi"
+# => "izkpm55j334u8x9y"
 ```
 
 ### Built-in Alphabets
@@ -50,11 +50,11 @@ id = OpaqueId.generate(size: 15, alphabet: OpaqueId::STANDARD_ALPHABET)
 ```ruby
 # Alphanumeric alphabet (default) - A-Z, a-z, 0-9
 id = OpaqueId.generate(alphabet: OpaqueId::ALPHANUMERIC_ALPHABET)
-# => "V1StGXR8_Z5jdHi6B-myT"
+# => "izkpm55j334u8x9y2"
 
 # Standard alphabet - A-Z, a-z, 0-9, -, _
 id = OpaqueId.generate(alphabet: OpaqueId::STANDARD_ALPHABET)
-# => "V1StGXR8_Z5jdHi6B-myT"
+# => "izkpm55j334u8x9y2"
 ```
 
 ### Custom Alphabets
@@ -73,7 +73,7 @@ id = OpaqueId.generate(size: 16, alphabet: hex_alphabet)
 # URL-safe characters
 url_safe = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
 id = OpaqueId.generate(size: 12, alphabet: url_safe)
-# => "V1StGXR8_Z5j"
+# => "izkpm55j334u8x"
 ```
 
 ## ActiveRecord Integration
@@ -94,7 +94,7 @@ end
 # Create a new user - opaque_id is automatically generated
 user = User.create!(name: "John Doe", email: "john@example.com")
 puts user.opaque_id
-# => "V1StGXR8_Z5jdHi6B-myT"
+# => "izkpm55j334u8x9y2"
 
 # The ID is generated before the record is saved
 user = User.new(name: "Jane Smith")
@@ -110,10 +110,10 @@ puts user.opaque_id
 
 ```ruby
 # Find by opaque_id (returns nil if not found)
-user = User.find_by_opaque_id("V1StGXR8_Z5jdHi6B-myT")
+user = User.find_by_opaque_id("izkpm55j334u8x9y2")
 
 # Find by opaque_id (raises exception if not found)
-user = User.find_by_opaque_id!("V1StGXR8_Z5jdHi6B-myT")
+user = User.find_by_opaque_id!("izkpm55j334u8x9y2")
 # => ActiveRecord::RecordNotFound if not found
 
 # Use in scopes
@@ -123,7 +123,7 @@ class User < ApplicationRecord
   scope :by_opaque_id, ->(id) { where(opaque_id: id) }
 end
 
-users = User.by_opaque_id("V1StGXR8_Z5jdHi6B-myT")
+users = User.by_opaque_id("izkpm55j334u8x9y2")
 ```
 
 ### Custom Column Names
@@ -139,7 +139,7 @@ end
 # Now the methods use the custom column name
 user = User.create!(name: "John Doe")
 puts user.public_id
-# => "V1StGXR8_Z5jdHi6B-myT"
+# => "izkpm55j334u8x9y2"
 
 user = User.find_by_public_id("V1StGXR8_Z5jdHi6B-myT")
 ```
@@ -198,7 +198,7 @@ end
 # Create an order
 order = Order.create!(user_id: 1, total: 99.99)
 puts order.opaque_id
-# => "V1StGXR8_Z5j"
+# => "izkpm55j334u8x"
 
 # Use in URLs
 order_url(order.opaque_id)
@@ -259,7 +259,7 @@ end
 # Create a user
 user = User.create!(name: "John Doe", email: "john@example.com")
 puts user.opaque_id
-# => "V1StGXR8_Z5jdHi6B-myT" (starts with letter)
+# => "izkpm55j334u8x9y2" (starts with letter)
 
 # Use in user profiles
 user_url(user.opaque_id)

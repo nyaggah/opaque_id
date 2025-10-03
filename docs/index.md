@@ -12,7 +12,7 @@ permalink: /
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 [![Gem Downloads](https://img.shields.io/badge/gem%20downloads-opaque_id-blue)](https://rubygems.org/gems/opaque_id)
 
-A simple Ruby gem for generating secure, opaque IDs for ActiveRecord models. OpaqueId provides a drop-in replacement for `nanoid.rb` using Ruby's built-in `SecureRandom` methods with optimized algorithms for uniform distribution.
+A simple Ruby gem for generating secure, opaque IDs for ActiveRecord models. OpaqueId provides a drop-in replacement for `nanoid.rb` using Ruby's built-in `SecureRandom` methods, with slug-like IDs as the default for optimal URL safety and user experience.
 
 - TOC
   {:toc}
@@ -57,10 +57,10 @@ end
 
 # Create a user - opaque_id is automatically generated
 user = User.create!(name: "John Doe")
-puts user.opaque_id # => "V1StGXR8_Z5jdHi6B-myT"
+puts user.opaque_id # => "izkpm55j334u8x9y2"
 
 # Find by opaque_id
-user = User.find_by_opaque_id("V1StGXR8_Z5jdHi6B-myT")
+user = User.find_by_opaque_id("izkpm55j334u8x9y2")
 ```
 
 ## Why OpaqueId?

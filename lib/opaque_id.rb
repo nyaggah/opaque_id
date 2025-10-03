@@ -9,6 +9,9 @@ module OpaqueId
   class GenerationError < Error; end
   class ConfigurationError < Error; end
 
+  # Slug-like alphabet for URL-safe, double-click selectable IDs (36 characters)
+  SLUG_LIKE_ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyz'
+
   # Standard URL-safe alphabet (64 characters)
   STANDARD_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_'
 
@@ -17,7 +20,7 @@ module OpaqueId
 
   class << self
     # Generate a cryptographically secure random ID
-    def generate(size: 21, alphabet: ALPHANUMERIC_ALPHABET)
+    def generate(size: 18, alphabet: SLUG_LIKE_ALPHABET)
       raise ConfigurationError, 'Size must be positive' unless size.positive?
       raise ConfigurationError, 'Alphabet cannot be empty' if alphabet.nil? || alphabet.empty?
 
