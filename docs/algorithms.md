@@ -8,7 +8,7 @@ permalink: /algorithms/
 
 # Algorithms
 
-OpaqueId uses sophisticated algorithms to generate cryptographically secure, collision-free opaque IDs. This guide explains the technical details behind the generation process, optimization strategies, and mathematical foundations.
+OpaqueId builds on Ruby's built-in `SecureRandom` methods to generate cryptographically secure, collision-free opaque IDs. This guide explains the technical details behind the generation process, optimization strategies, and mathematical foundations.
 
 - TOC
   {:toc}
