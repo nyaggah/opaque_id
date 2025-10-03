@@ -8,7 +8,7 @@ permalink: /performance/
 
 # Performance
 
-OpaqueId is designed for high performance with optimized algorithms and efficient memory usage. This guide covers benchmarks, optimization strategies, and scalability considerations.
+OpaqueId is designed for efficient ID generation with optimized algorithms and memory usage. This guide covers performance characteristics, optimization strategies, and scalability considerations.
 
 - TOC
   {:toc}
@@ -17,11 +17,11 @@ OpaqueId is designed for high performance with optimized algorithms and efficien
 
 ### Generation Speed
 
-OpaqueId is designed for high performance with optimized algorithms for different alphabet sizes and ID lengths.
+OpaqueId is designed for efficient ID generation with optimized algorithms for different alphabet sizes and ID lengths.
 
 #### Algorithm Performance
 
-- **Fast Path (64-character alphabets)**: Uses bitwise operations for maximum speed with no rejection sampling overhead
+- **Fast Path (64-character alphabets)**: Uses bitwise operations for efficient generation with no rejection sampling overhead
 - **Unbiased Path (Other alphabets)**: Uses rejection sampling for unbiased distribution with slight performance overhead
 - **Performance scales linearly** with ID length and batch size
 

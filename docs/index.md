@@ -12,7 +12,7 @@ permalink: /
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 [![Gem Downloads](https://img.shields.io/badge/gem%20downloads-opaque_id-blue)](https://rubygems.org/gems/opaque_id)
 
-A Ruby gem for generating cryptographically secure, collision-free opaque IDs for ActiveRecord models. OpaqueId provides a drop-in replacement for `nanoid.rb` using Ruby's built-in `SecureRandom` methods with optimized algorithms for unbiased distribution.
+A simple Ruby gem for generating secure, opaque IDs for ActiveRecord models. OpaqueId provides a drop-in replacement for `nanoid.rb` using Ruby's built-in `SecureRandom` methods with optimized algorithms for uniform distribution.
 
 - TOC
   {:toc}
