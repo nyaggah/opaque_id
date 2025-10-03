@@ -57,7 +57,7 @@ class InstallGeneratorTest < Minitest::Test
 
     migration_content = File.read(migration_files.first)
     assert_includes migration_content, 'class AddOpaqueIdToUsers'
-    assert_includes migration_content, 'add_column :users, :opaque_id, :string'
+    assert_includes migration_content, 'add_column :users, :opaque_id, :string, limit: 21'
     assert_includes migration_content, 'add_index :users, :opaque_id, unique: true'
   end
 
@@ -68,7 +68,7 @@ class InstallGeneratorTest < Minitest::Test
     migration_files = Dir.glob('db/migrate/*_add_opaque_id_to_users.rb')
     migration_content = File.read(migration_files.first)
 
-    assert_includes migration_content, 'add_column :users, :public_id, :string'
+    assert_includes migration_content, 'add_column :users, :public_id, :string, limit: 21'
     assert_includes migration_content, 'add_index :users, :public_id, unique: true'
   end
 
@@ -813,6 +813,16 @@ class InstallGeneratorTest < Minitest::Test
     assert_includes model_content, 'def method1'
     assert_includes model_content, 'CONSTANT2 = "value2"'
     assert_includes model_content, 'def method2'
+  end
+
+  def test_generator_creates_migration_with_custom_limit
+    generator = create_generator('User', { limit: 25 })
+    generator.invoke_all
+
+    migration_files = Dir.glob('db/migrate/*_add_opaque_id_to_users.rb')
+    migration_content = File.read(migration_files.first)
+
+    assert_includes migration_content, 'add_column :users, :opaque_id, :string, limit: 25'
   end
 
   def test_generator_handles_model_with_complex_structure
