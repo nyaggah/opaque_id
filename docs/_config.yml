@@ -88,6 +88,8 @@ kramdown:
     block:
       line_numbers: false
       start_line: 1
+  auto_id: true
+  table_of_contents: true
 
 # Custom head includes
 head_scripts:

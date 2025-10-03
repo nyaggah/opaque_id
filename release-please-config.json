@@ -1,5 +1,6 @@
 {
   "release-type": "ruby",
+  "monorepo-tags": false,
   "packages": {
     ".": {
       "package-name": "opaque_id",
