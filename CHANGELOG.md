@@ -5,6 +5,21 @@ All notable changes to the OpaqueId gem will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.7](https://github.com/nyaggah/opaque_id/compare/v1.7.6...v1.7.7) (2025-10-04)
+
+
+### Miscellaneous Chores
+
+* at Gemfile.lock to ignore ([31cb269](https://github.com/nyaggah/opaque_id/commit/31cb269b8eba86b5bbc1306744cc8b8cee59f1d3))
+* docs title ([1765df6](https://github.com/nyaggah/opaque_id/commit/1765df6ee044370ac9a828855031084653f48442))
+* ignore gem lockfile ([9aea766](https://github.com/nyaggah/opaque_id/commit/9aea7665c5adbac12ed84c75b7ff24aaef8922f0))
+* **main:** release 1.7.6 ([b551b4e](https://github.com/nyaggah/opaque_id/commit/b551b4e90394f887c921b6083faa7098b07b235d))
+* **main:** release 1.7.6 ([8502083](https://github.com/nyaggah/opaque_id/commit/85020837191ccc148839cb9007753bc297ac76a6))
+* opaque_id logo/masthead for docs and readme ([afe4380](https://github.com/nyaggah/opaque_id/commit/afe4380ef9ace788564829ba1bb8530729f96bf4))
+* opaque_id logo/masthead for docs and readme ([850ca43](https://github.com/nyaggah/opaque_id/commit/850ca43df6f5839429f97c1df601687803718d86))
+* readme header image ([5e7274e](https://github.com/nyaggah/opaque_id/commit/5e7274e46e6dab2125a9fbb778726f81a74699c6))
+* readme header image ([159fcba](https://github.com/nyaggah/opaque_id/commit/159fcba18fca3a28661683544c49df995bf9e171))
+
 ## [1.7.6](https://github.com/nyaggah/opaque_id/compare/v1.7.5...v1.7.6) (2025-10-04)
 
 
