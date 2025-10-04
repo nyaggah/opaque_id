@@ -36,6 +36,7 @@ A simple Ruby gem for generating secure, opaque IDs for ActiveRecord models. Opa
   - [Fast Path Algorithm (64-character alphabets)](#fast-path-algorithm-64-character-alphabets)
   - [Unbiased Path Algorithm (other alphabets)](#unbiased-path-algorithm-other-alphabets)
   - [Algorithm Selection](#algorithm-selection)
+- [Performance & Benchmarks](#performance--benchmarks)
 - [Performance Benchmarks](#performance-benchmarks)
   - [Generation Speed (IDs per second)](#generation-speed-ids-per-second)
   - [Memory Usage](#memory-usage)
@@ -667,14 +668,14 @@ rails generate opaque_id:install users --column-name=public_id
 
 OpaqueId provides comprehensive configuration options to customize ID generation behavior:
 
-| Option                           | Type            | Default                 | Description                                     | Example Usage                                           |
-| -------------------------------- | --------------- | ----------------------- | ----------------------------------------------- | ------------------------------------------------------- |
-| `opaque_id_column`               | `Symbol`        | `:opaque_id`            | Column name for storing the opaque ID           | `self.opaque_id_column = :public_id`                    |
-| `opaque_id_length`               | `Integer`       | `18`                    | Length of generated IDs                         | `self.opaque_id_length = 32`                            |
-| `opaque_id_alphabet`             | `String`        | `SLUG_LIKE_ALPHABET`    | Character set for ID generation                 | `self.opaque_id_alphabet = OpaqueId::STANDARD_ALPHABET` |
-| `opaque_id_require_letter_start` | `Boolean`       | `false`                 | Require ID to start with a letter               | `self.opaque_id_require_letter_start = true`            |
-| `opaque_id_purge_chars`          | `Array<String>` | `[]`                    | Characters to remove from generated IDs         | `self.opaque_id_purge_chars = ['0', 'O', 'I', 'l']`     |
-| `opaque_id_max_retry`            | `Integer`       | `3`                     | Maximum retry attempts for collision resolution | `self.opaque_id_max_retry = 10`                         |
+| Option                           | Type            | Default              | Description                                     | Example Usage                                           |
+| -------------------------------- | --------------- | -------------------- | ----------------------------------------------- | ------------------------------------------------------- |
+| `opaque_id_column`               | `Symbol`        | `:opaque_id`         | Column name for storing the opaque ID           | `self.opaque_id_column = :public_id`                    |
+| `opaque_id_length`               | `Integer`       | `18`                 | Length of generated IDs                         | `self.opaque_id_length = 32`                            |
+| `opaque_id_alphabet`             | `String`        | `SLUG_LIKE_ALPHABET` | Character set for ID generation                 | `self.opaque_id_alphabet = OpaqueId::STANDARD_ALPHABET` |
+| `opaque_id_require_letter_start` | `Boolean`       | `false`              | Require ID to start with a letter               | `self.opaque_id_require_letter_start = true`            |
+| `opaque_id_purge_chars`          | `Array<String>` | `[]`                 | Characters to remove from generated IDs         | `self.opaque_id_purge_chars = ['0', 'O', 'I', 'l']`     |
+| `opaque_id_max_retry`            | `Integer`       | `3`                  | Maximum retry attempts for collision resolution | `self.opaque_id_max_retry = 10`                         |
 
 ### Configuration Details
 
@@ -1666,6 +1667,27 @@ This software is provided "as is" without warranty of any kind, express or impli
 ## Code of Conduct
 
 Everyone interacting in the OpaqueId project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/nyaggah/opaque_id/blob/main/CODE_OF_CONDUCT.md).
+
+## Performance & Benchmarks
+
+You can run benchmarks to test OpaqueId's performance and uniqueness characteristics on your system.
+
+**Quick Test:**
+
+```bash
+# Test 10,000 ID generation
+ruby -e "require 'opaque_id'; start=Time.now; 10000.times{OpaqueId.generate}; puts \"Generated 10,000 IDs in #{(Time.now-start).round(4)}s\""
+
+# Compare with SecureRandom (as mentioned in nanoid.rb issue #67)
+ruby -e "require 'opaque_id'; require 'securerandom'; puts 'OpaqueId: ' + OpaqueId.generate; puts 'SecureRandom: ' + SecureRandom.urlsafe_base64"
+```
+
+**Expected Results:**
+
+- **Performance**: 100,000+ IDs per second on modern hardware
+- **Uniqueness**: Zero collisions in practice (theoretical probability < 10^-16 for 1M IDs)
+
+For comprehensive benchmarks including collision tests, alphabet distribution analysis, and performance comparisons, see the [Benchmarks Guide](docs/benchmarks.md).
 
 ## Acknowledgements
 

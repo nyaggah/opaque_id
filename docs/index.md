@@ -57,10 +57,10 @@ end
 
 # Create a user - opaque_id is automatically generated
 user = User.create!(name: "John Doe")
-puts user.opaque_id # => "izkpm55j334u8x9y2"
+puts user.opaque_id # => "izkpm55j334u8x9y2a"
 
 # Find by opaque_id
-user = User.find_by_opaque_id("izkpm55j334u8x9y2")
+user = User.find_by_opaque_id("izkpm55j334u8x9y2a")
 ```
 
 ## Why OpaqueId?
@@ -127,6 +127,24 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contributing
 
 This project follows an "open source, closed contribution" model. We welcome bug reports, feature requests, and documentation improvements through GitHub Issues.
+
+## Performance & Benchmarks
+
+You can run benchmarks to test OpaqueId's performance and uniqueness characteristics on your system.
+
+**Quick Test:**
+
+```bash
+# Test 10,000 ID generation
+ruby -e "require 'opaque_id'; start=Time.now; 10000.times{OpaqueId.generate}; puts \"Generated 10,000 IDs in #{(Time.now-start).round(4)}s\""
+```
+
+**Expected Results:**
+
+- **Performance**: 100,000+ IDs per second on modern hardware
+- **Uniqueness**: Zero collisions in practice (theoretical probability < 10^-16 for 1M IDs)
+
+For comprehensive benchmarks including collision tests, alphabet distribution analysis, and performance comparisons, see the [Benchmarks Guide](benchmarks.md).
 
 ## Acknowledgements
 
