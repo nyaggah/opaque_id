@@ -74,7 +74,6 @@ search_show_title: true
 # Theme customization
 masthead_title: "OpaqueId"
 masthead_title_url: "/"
-masthead_title_image: false
 
 # Syntax highlighting
 highlighter: rouge
