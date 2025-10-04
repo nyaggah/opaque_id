@@ -5,6 +5,13 @@ All notable changes to the OpaqueId gem will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.5](https://github.com/nyaggah/opaque_id/compare/v1.7.4...v1.7.5) (2025-10-04)
+
+
+### Miscellaneous Chores
+
+* ruby-version for docks; update gemlock ([e203428](https://github.com/nyaggah/opaque_id/commit/e2034282d049b0e0c69d7c0841780ec2ecb0af23))
+
 ## [1.7.4](https://github.com/nyaggah/opaque_id/compare/v1.7.3...v1.7.4) (2025-10-04)
 
 
