@@ -1,0 +1,21 @@
+/* Logo styling using background image */
+.site-title {
+  background-image: url("/opaque_id/assets/images/logo.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: contain;
+  padding-left: 2.5rem !important; /* Make space for the logo */
+  min-height: 2.5rem !important; /* Ensure enough height for the logo */
+  display: flex !important;
+  align-items: center !important;
+  max-height: 3rem !important; /* Ensure the logo doesn't get too tall */
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 768px) {
+  .site-title {
+    padding-left: 2rem !important;
+    min-height: 2rem !important;
+    max-height: 2.5rem !important;
+  }
+}
