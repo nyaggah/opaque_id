@@ -11,6 +11,12 @@
   max-height: 3rem !important; /* Ensure the logo doesn't get too tall */
 }
 
+/* Hide the text content while keeping the background logo */
+.site-title {
+  color: transparent !important;
+  text-indent: -9999px !important;
+}
+
 /* Adjust for smaller screens */
 @media (max-width: 768px) {
   .site-title {
