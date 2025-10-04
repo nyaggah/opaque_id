@@ -2,7 +2,6 @@
   "release-type": "ruby",
   "packages": {
     ".": {
-      "package-name": "opaque_id",
       "version-file": "lib/opaque_id/version.rb",
       "tag-template": "v${version}"
     }

@@ -5,7 +5,7 @@ on:
     types: [published, created]
   push:
     tags:
-      - "opaque_id/v*"
+      - "v*"
 
 permissions:
   id-token: write # IMPORTANT: this permission is mandatory for trusted publishing
