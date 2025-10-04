@@ -5,6 +5,14 @@ All notable changes to the OpaqueId gem will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.1](https://github.com/nyaggah/opaque_id/compare/v1.7.0...v1.7.1) (2025-10-04)
+
+
+### Bug Fixes
+
+* configure Release Please to generate v* tags instead of opaque_id/v* ([c48ca35](https://github.com/nyaggah/opaque_id/commit/c48ca35e25072717e948da64c41a54d9e453dce4))
+* update publish workflow to match opaque_id/v* tag pattern ([377e808](https://github.com/nyaggah/opaque_id/commit/377e808fa31f59dcb94551b75fd5bfe56efa5008))
+
 ## [1.7.0](https://github.com/nyaggah/opaque_id/compare/opaque_id-v1.6.0...opaque_id/v1.7.0) (2025-10-04)
 
 
