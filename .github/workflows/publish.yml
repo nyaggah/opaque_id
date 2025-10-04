@@ -24,7 +24,6 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-          ruby-version-file: .ruby-version
 
       # Release
       - uses: rubygems/release-gem@v1
