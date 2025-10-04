@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    opaque_id (1.7.2)
+    opaque_id (1.7.3)
       activerecord (>= 8.0)
       activesupport (>= 8.0)
 
@@ -130,9 +130,21 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.4)
+    nokogiri (1.18.10-aarch64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.10-aarch64-linux-musl)
+      racc (~> 1.4)
+    nokogiri (1.18.10-arm-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.10-arm-linux-musl)
+      racc (~> 1.4)
     nokogiri (1.18.10-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.18.10-x86_64-darwin)
+      racc (~> 1.4)
     nokogiri (1.18.10-x86_64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.10-x86_64-linux-musl)
       racc (~> 1.4)
     parallel (1.27.0)
     parser (3.3.9.0)
@@ -186,9 +198,10 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.3.0)
-    rdoc (6.14.2)
+    rdoc (6.15.0)
       erb
       psych (>= 4.0.0)
+      tsort
     regexp_parser (2.11.3)
     reline (0.6.2)
       io-console (~> 0.5)
@@ -208,8 +221,14 @@ GEM
       prism (~> 1.4)
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
+    sqlite3 (2.7.4-aarch64-linux-gnu)
+    sqlite3 (2.7.4-aarch64-linux-musl)
+    sqlite3 (2.7.4-arm-linux-gnu)
+    sqlite3 (2.7.4-arm-linux-musl)
     sqlite3 (2.7.4-arm64-darwin)
+    sqlite3 (2.7.4-x86_64-darwin)
     sqlite3 (2.7.4-x86_64-linux-gnu)
+    sqlite3 (2.7.4-x86_64-linux-musl)
     stringio (3.1.7)
     thor (1.4.0)
     timeout (0.4.3)
@@ -228,8 +247,14 @@ GEM
     zeitwerk (2.7.3)
 
 PLATFORMS
+  aarch64-linux-gnu
+  aarch64-linux-musl
+  arm-linux-gnu
+  arm-linux-musl
   arm64-darwin
-  x86_64-linux
+  x86_64-darwin
+  x86_64-linux-gnu
+  x86_64-linux-musl
 
 DEPENDENCIES
   bundle-audit (~> 0.1)
@@ -242,4 +267,4 @@ DEPENDENCIES
   sqlite3 (>= 2.1)
 
 BUNDLED WITH
-   2.6.9
+   2.7.2
