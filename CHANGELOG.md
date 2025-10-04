@@ -5,6 +5,19 @@ All notable changes to the OpaqueId gem will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.4](https://github.com/nyaggah/opaque_id/compare/v1.7.3...v1.7.4) (2025-10-04)
+
+
+### Bug Fixes
+
+* ci failures and centralize ruby version management ([7c17b44](https://github.com/nyaggah/opaque_id/commit/7c17b44bd20aaa78d113192049618ac1c9ed6904))
+* use explicit ruby-version parameter in workflows ([aef00ca](https://github.com/nyaggah/opaque_id/commit/aef00ca6e2330734c7d8462449e0a2d22b9ea509))
+
+
+### Miscellaneous Chores
+
+* bundle ([be95d88](https://github.com/nyaggah/opaque_id/commit/be95d88e4597ce397cc80189121235833b5f033f))
+
 ## [1.7.3](https://github.com/nyaggah/opaque_id/compare/v1.7.2...v1.7.3) (2025-10-04)
 
 
