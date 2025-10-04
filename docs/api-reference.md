@@ -19,20 +19,20 @@ The main module for generating opaque IDs.
 
 ### Constants
 
-#### ALPHANUMERIC_ALPHABET
+#### SLUG_LIKE_ALPHABET
 
 Default alphabet for ID generation.
 
 ```ruby
-OpaqueId::ALPHANUMERIC_ALPHABET
-# => "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+OpaqueId::SLUG_LIKE_ALPHABET
+# => "0123456789abcdefghijklmnopqrstuvwxyz"
 ```
 
 **Characteristics:**
 
-- **Length**: 62 characters
-- **Characters**: A-Z, a-z, 0-9
-- **Use case**: General purpose, URL-safe
+- **Length**: 36 characters
+- **Characters**: 0-9, a-z
+- **Use case**: URL-friendly, double-click selectable
 - **Performance**: Good
 
 #### STANDARD_ALPHABET

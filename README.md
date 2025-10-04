@@ -27,7 +27,7 @@ A simple Ruby gem for generating secure, opaque IDs for ActiveRecord models. Opa
 - [Configuration Options](#configuration-options)
   - [Configuration Details](#configuration-details)
 - [Built-in Alphabets](#built-in-alphabets)
-  - [`ALPHANUMERIC_ALPHABET` (Default)](#alphanumeric_alphabet-default)
+  - [`SLUG_LIKE_ALPHABET` (Default)](#slug_like_alphabet-default)
   - [`STANDARD_ALPHABET`](#standard_alphabet)
   - [Alphabet Comparison](#alphabet-comparison)
   - [Custom Alphabets](#custom-alphabets)
@@ -36,6 +36,7 @@ A simple Ruby gem for generating secure, opaque IDs for ActiveRecord models. Opa
   - [Fast Path Algorithm (64-character alphabets)](#fast-path-algorithm-64-character-alphabets)
   - [Unbiased Path Algorithm (other alphabets)](#unbiased-path-algorithm-other-alphabets)
   - [Algorithm Selection](#algorithm-selection)
+- [Performance & Benchmarks](#performance--benchmarks)
 - [Performance Benchmarks](#performance-benchmarks)
   - [Generation Speed (IDs per second)](#generation-speed-ids-per-second)
   - [Memory Usage](#memory-usage)
@@ -176,11 +177,11 @@ end
 
 # IDs are automatically generated on creation
 user = User.create!(name: "John Doe")
-puts user.opaque_id  # => "izkpm55j334u8x9y2"
+puts user.opaque_id  # => "izkpm55j334u8x9y2a"
 
 # Find by opaque ID
-user = User.find_by_opaque_id("izkpm55j334u8x9y2")
-user = User.find_by_opaque_id!("izkpm55j334u8x9y2")  # raises if not found
+user = User.find_by_opaque_id("izkpm55j334u8x9y2a")
+user = User.find_by_opaque_id!("izkpm55j334u8x9y2a")  # raises if not found
 ```
 
 ## Usage
@@ -197,7 +198,7 @@ OpaqueId defaults to generating **slug-like IDs** that are perfect for URLs and 
 ```ruby
 # Default generation creates slug-like IDs
 id = OpaqueId.generate
-# => "izkpm55j334u8x9y2"  # Perfect for URLs and user selection
+# => "izkpm55j334u8x9y2a"  # Perfect for URLs and user selection
 
 # Compare to UUIDs
 uuid = SecureRandom.uuid
@@ -213,7 +214,7 @@ OpaqueId can be used independently of ActiveRecord for generating secure IDs in 
 ```ruby
 # Generate with default settings (18 characters, slug-like)
 id = OpaqueId.generate
-# => "izkpm55j334u8x9y2"
+# => "izkpm55j334u8x9y2a"
 
 # Custom length
 id = OpaqueId.generate(size: 10)
@@ -248,7 +249,7 @@ class BackgroundJob
 end
 
 job_id = BackgroundJob.enqueue(ProcessDataJob, user_id: 123)
-# => "izkpm55j334u8x9y2"
+# => "izkpm55j334u8x9y2a"
 ```
 
 ##### Temporary File Names
@@ -347,7 +348,7 @@ class ApiLogger
 end
 
 request_id = ApiLogger.log_request("/api/users", { page: 1 })
-# => "izkpm55j334u8x9y2"
+# => "izkpm55j334u8x9y2a"
 ```
 
 ##### Batch Processing IDs
@@ -369,7 +370,7 @@ class BatchProcessor
 end
 
 batch_id = BatchProcessor.process_batch([1, 2, 3, 4, 5])
-# => "izkpm55j334u8x9y2"
+# => "izkpm55j334u8x9y2a"
 # => Processing item izkpm55j334u8x9y2_000: 1
 # => Processing item izkpm55j334u8x9y2_001: 2
 # => ...
@@ -436,7 +437,7 @@ end
 
 # Create a new post - opaque_id is automatically generated
 post = Post.create!(title: "Hello World", content: "This is my first post")
-puts post.opaque_id  # => "izkpm55j334u8x9y2"
+puts post.opaque_id  # => "izkpm55j334u8x9y2a"
 
 # Create multiple posts
 posts = Post.create!([
@@ -548,7 +549,7 @@ class Upload < ApplicationRecord
   self.opaque_id_purge_chars = ['/', '\\', ':', '*', '?', '"', '<', '>', '|']
 end
 
-# Generated filenames will look like: "izkpm55j334u8x9y2"
+# Generated filenames will look like: "izkpm55j334u8x9y2a"
 ```
 
 ##### Session Token Configuration
@@ -611,7 +612,7 @@ end
 
 ```ruby
 # Find by opaque ID (returns nil if not found)
-user = User.find_by_opaque_id("izkpm55j334u8x9y2")
+user = User.find_by_opaque_id("izkpm55j334u8x9y2a")
 if user
   puts "Found user: #{user.name}"
 else
@@ -619,7 +620,7 @@ else
 end
 
 # Find by opaque ID (raises ActiveRecord::RecordNotFound if not found)
-user = User.find_by_opaque_id!("izkpm55j334u8x9y2")
+user = User.find_by_opaque_id!("izkpm55j334u8x9y2a")
 puts "Found user: #{user.name}"
 
 # Use in controllers for public-facing URLs
@@ -667,14 +668,14 @@ rails generate opaque_id:install users --column-name=public_id
 
 OpaqueId provides comprehensive configuration options to customize ID generation behavior:
 
-| Option                           | Type            | Default                 | Description                                     | Example Usage                                           |
-| -------------------------------- | --------------- | ----------------------- | ----------------------------------------------- | ------------------------------------------------------- |
-| `opaque_id_column`               | `Symbol`        | `:opaque_id`            | Column name for storing the opaque ID           | `self.opaque_id_column = :public_id`                    |
-| `opaque_id_length`               | `Integer`       | `21`                    | Length of generated IDs                         | `self.opaque_id_length = 32`                            |
-| `opaque_id_alphabet`             | `String`        | `ALPHANUMERIC_ALPHABET` | Character set for ID generation                 | `self.opaque_id_alphabet = OpaqueId::STANDARD_ALPHABET` |
-| `opaque_id_require_letter_start` | `Boolean`       | `false`                 | Require ID to start with a letter               | `self.opaque_id_require_letter_start = true`            |
-| `opaque_id_purge_chars`          | `Array<String>` | `[]`                    | Characters to remove from generated IDs         | `self.opaque_id_purge_chars = ['0', 'O', 'I', 'l']`     |
-| `opaque_id_max_retry`            | `Integer`       | `3`                     | Maximum retry attempts for collision resolution | `self.opaque_id_max_retry = 10`                         |
+| Option                           | Type            | Default              | Description                                     | Example Usage                                           |
+| -------------------------------- | --------------- | -------------------- | ----------------------------------------------- | ------------------------------------------------------- |
+| `opaque_id_column`               | `Symbol`        | `:opaque_id`         | Column name for storing the opaque ID           | `self.opaque_id_column = :public_id`                    |
+| `opaque_id_length`               | `Integer`       | `18`                 | Length of generated IDs                         | `self.opaque_id_length = 32`                            |
+| `opaque_id_alphabet`             | `String`        | `SLUG_LIKE_ALPHABET` | Character set for ID generation                 | `self.opaque_id_alphabet = OpaqueId::STANDARD_ALPHABET` |
+| `opaque_id_require_letter_start` | `Boolean`       | `false`              | Require ID to start with a letter               | `self.opaque_id_require_letter_start = true`            |
+| `opaque_id_purge_chars`          | `Array<String>` | `[]`                 | Characters to remove from generated IDs         | `self.opaque_id_purge_chars = ['0', 'O', 'I', 'l']`     |
+| `opaque_id_max_retry`            | `Integer`       | `3`                  | Maximum retry attempts for collision resolution | `self.opaque_id_max_retry = 10`                         |
 
 ### Configuration Details
 
@@ -691,7 +692,7 @@ OpaqueId provides comprehensive configuration options to customize ID generation
 - **Performance**: Longer IDs are more secure but use more storage
 - **Examples**:
   - `6` → Short URLs: `"V1StGX"`
-  - `18` → Default: `"izkpm55j334u8x9y2"`
+  - `18` → Default: `"izkpm55j334u8x9y2a"`
   - `32` → API Keys: `"izkpm55j334u8x9y2abc1234def5678gh"`
 
 #### `opaque_id_alphabet`
@@ -710,7 +711,7 @@ OpaqueId provides comprehensive configuration options to customize ID generation
 - **Purpose**: Ensures IDs start with a letter for better readability
 - **Use Cases**: When IDs are user-facing or need to be easily readable
 - **Performance**: Slight overhead due to rejection sampling
-- **Example**: `true` → `"izkpm55j334u8x9y2"`, `false` → `"zkpm55j334u8x9y2"`
+- **Example**: `true` → `"izkpm55j334u8x9y2a"`, `false` → `"zkpm55j334u8x9y2a"`
 
 #### `opaque_id_purge_chars`
 
@@ -1666,6 +1667,27 @@ This software is provided "as is" without warranty of any kind, express or impli
 ## Code of Conduct
 
 Everyone interacting in the OpaqueId project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/nyaggah/opaque_id/blob/main/CODE_OF_CONDUCT.md).
+
+## Performance & Benchmarks
+
+You can run benchmarks to test OpaqueId's performance and uniqueness characteristics on your system.
+
+**Quick Test:**
+
+```bash
+# Test 10,000 ID generation
+ruby -e "require 'opaque_id'; start=Time.now; 10000.times{OpaqueId.generate}; puts \"Generated 10,000 IDs in #{(Time.now-start).round(4)}s\""
+
+# Compare with SecureRandom (as mentioned in nanoid.rb issue #67)
+ruby -e "require 'opaque_id'; require 'securerandom'; puts 'OpaqueId: ' + OpaqueId.generate; puts 'SecureRandom: ' + SecureRandom.urlsafe_base64"
+```
+
+**Expected Results:**
+
+- **Performance**: 100,000+ IDs per second on modern hardware
+- **Uniqueness**: Zero collisions in practice (theoretical probability < 10^-16 for 1M IDs)
+
+For comprehensive benchmarks including collision tests, alphabet distribution analysis, and performance comparisons, see the [Benchmarks Guide](docs/benchmarks.md).
 
 ## Acknowledgements
 

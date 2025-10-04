@@ -30,7 +30,7 @@ module OpaqueId
       end
 
       def opaque_id_length
-        @opaque_id_length ||= 21
+        @opaque_id_length ||= 18
       end
 
       def opaque_id_length=(value)
@@ -38,7 +38,7 @@ module OpaqueId
       end
 
       def opaque_id_alphabet
-        @opaque_id_alphabet ||= OpaqueId::ALPHANUMERIC_ALPHABET
+        @opaque_id_alphabet ||= OpaqueId::SLUG_LIKE_ALPHABET
       end
 
       def opaque_id_alphabet=(value)

@@ -37,8 +37,8 @@ class OpaqueIdModelTest < Minitest::Test
 
   def test_default_configuration
     assert_equal :opaque_id, @model_class.opaque_id_column
-    assert_equal 21, @model_class.opaque_id_length
-    assert_equal OpaqueId::ALPHANUMERIC_ALPHABET, @model_class.opaque_id_alphabet
+    assert_equal 18, @model_class.opaque_id_length
+    assert_equal OpaqueId::SLUG_LIKE_ALPHABET, @model_class.opaque_id_alphabet
     assert_equal false, @model_class.opaque_id_require_letter_start
     assert_equal [], @model_class.opaque_id_purge_chars
     assert_equal 3, @model_class.opaque_id_max_retry
@@ -64,8 +64,8 @@ class OpaqueIdModelTest < Minitest::Test
     model = @model_class.create!(name: 'Test Model')
 
     refute_nil model.opaque_id
-    assert_equal 21, model.opaque_id.length
-    assert_match(/\A[A-Za-z0-9]+\z/, model.opaque_id)
+    assert_equal 18, model.opaque_id.length
+    assert_match(/\A[a-z0-9]+\z/, model.opaque_id)
   end
 
   def test_opaque_id_not_generated_on_update
@@ -129,7 +129,7 @@ class OpaqueIdModelTest < Minitest::Test
     model = custom_model_class.create!(name: 'Test Model')
 
     refute_nil model.public_id
-    assert_equal 21, model.public_id.length
+    assert_equal 18, model.public_id.length
 
     found_model = custom_model_class.find_by_opaque_id(model.public_id)
     assert_equal model, found_model
@@ -228,7 +228,7 @@ class OpaqueIdModelTest < Minitest::Test
     # Test that instance methods can access configuration
     assert_equal :public_id, model.send(:opaque_id_column)
     assert_equal 15, model.send(:opaque_id_length)
-    assert_equal OpaqueId::ALPHANUMERIC_ALPHABET, model.send(:opaque_id_alphabet)
+    assert_equal OpaqueId::SLUG_LIKE_ALPHABET, model.send(:opaque_id_alphabet)
   end
 
   def test_multiple_models_with_different_configurations
@@ -258,9 +258,9 @@ class OpaqueIdModelTest < Minitest::Test
     model1 = @model_class.create!(name: 'Model 1')
     model2 = other_model_class.create!(name: 'Model 2')
 
-    assert_equal 21, model1.opaque_id.length
+    assert_equal 18, model1.opaque_id.length
     assert_equal 15, model2.opaque_id.length
-    assert_match(/\A[A-Za-z0-9]+\z/, model1.opaque_id)
+    assert_match(/\A[a-z0-9]+\z/, model1.opaque_id)
     assert_match(/\A[ABCDEF]+\z/, model2.opaque_id)
 
     # Clean up

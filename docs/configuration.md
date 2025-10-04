@@ -26,10 +26,10 @@ class User < ApplicationRecord
   # Custom column name
   self.opaque_id_column = :public_id
 
-  # Custom length (default: 21)
+  # Custom length (default: 18)
   self.opaque_id_length = 15
 
-  # Custom alphabet (default: ALPHANUMERIC_ALPHABET)
+  # Custom alphabet (default: SLUG_LIKE_ALPHABET)
   self.opaque_id_alphabet = OpaqueId::STANDARD_ALPHABET
 
   # Require letter start (default: false)
@@ -45,14 +45,14 @@ end
 
 ### Configuration Options Reference
 
-| Option                           | Type    | Default                 | Description                                   |
-| -------------------------------- | ------- | ----------------------- | --------------------------------------------- |
-| `opaque_id_column`               | Symbol  | `:opaque_id`            | Column name for storing the opaque ID         |
-| `opaque_id_length`               | Integer | `21`                    | Length of generated IDs                       |
-| `opaque_id_alphabet`             | String  | `ALPHANUMERIC_ALPHABET` | Character set for ID generation               |
-| `opaque_id_require_letter_start` | Boolean | `false`                 | Require IDs to start with a letter            |
-| `opaque_id_max_retry`            | Integer | `3`                     | Maximum retry attempts for collision handling |
-| `opaque_id_purge_chars`          | Array   | `[]`                    | Characters to exclude from generated IDs      |
+| Option                           | Type    | Default              | Description                                   |
+| -------------------------------- | ------- | -------------------- | --------------------------------------------- |
+| `opaque_id_column`               | Symbol  | `:opaque_id`         | Column name for storing the opaque ID         |
+| `opaque_id_length`               | Integer | `18`                 | Length of generated IDs                       |
+| `opaque_id_alphabet`             | String  | `SLUG_LIKE_ALPHABET` | Character set for ID generation               |
+| `opaque_id_require_letter_start` | Boolean | `false`              | Require IDs to start with a letter            |
+| `opaque_id_max_retry`            | Integer | `3`                  | Maximum retry attempts for collision handling |
+| `opaque_id_purge_chars`          | Array   | `[]`                 | Characters to exclude from generated IDs      |
 
 ## Global Configuration
 
@@ -97,12 +97,25 @@ end
 
 ### Built-in Alphabets
 
-#### ALPHANUMERIC_ALPHABET (Default)
+#### SLUG_LIKE_ALPHABET (Default)
+
+```ruby
+# Characters: 0-9, a-z (36 characters)
+# Use case: URL-safe, double-click selectable, no confusing characters
+# Example output: "izkpm55j334u8x9y2a"
+
+class User < ApplicationRecord
+  include OpaqueId::Model
+  self.opaque_id_alphabet = OpaqueId::SLUG_LIKE_ALPHABET
+end
+```
+
+#### ALPHANUMERIC_ALPHABET
 
 ```ruby
 # Characters: A-Z, a-z, 0-9 (62 characters)
 # Use case: General purpose, URL-safe
-# Example output: "V1StGXR8_Z5jdHi6B-myT"
+# Example output: "V1StGXR8Z5jdHi6BmyT"
 
 class User < ApplicationRecord
   include OpaqueId::Model
@@ -240,9 +253,9 @@ end
 # Now the methods use the custom column name
 user = User.create!(name: "John Doe")
 puts user.public_id
-# => "V1StGXR8_Z5jdHi6B-myT"
+# => "izkpm55j334u8x9y2a"
 
-user = User.find_by_public_id("V1StGXR8_Z5jdHi6B-myT")
+user = User.find_by_public_id("izkpm55j334u8x9y2a")
 ```
 
 ### Multiple Column Names
@@ -279,7 +292,7 @@ end
 # This will retry until it generates an ID starting with a letter
 user = User.create!(name: "John Doe")
 puts user.opaque_id
-# => "V1StGXR8_Z5jdHi6B-myT" (starts with 'V')
+# => "izkpm55j334u8x9y2a" (starts with 'i')
 ```
 
 ### Character Purging
@@ -295,7 +308,7 @@ end
 # Generated IDs will not contain these characters
 user = User.create!(name: "John Doe")
 puts user.opaque_id
-# => "V1StGXR8_Z5jdHi6B-myT" (no '0', 'O', 'l', 'I')
+# => "izkpm55j334u8x9y2a" (no '0', 'O', 'l', 'I')
 ```
 
 ## Collision Handling Configuration
@@ -496,8 +509,8 @@ class UserTest < ActiveSupport::TestCase
     user = User.new(name: "Test User")
 
     assert user.valid?
-    assert_equal 21, user.class.opaque_id_length
-    assert_equal OpaqueId::ALPHANUMERIC_ALPHABET, user.class.opaque_id_alphabet
+    assert_equal 18, user.class.opaque_id_length
+    assert_equal OpaqueId::SLUG_LIKE_ALPHABET, user.class.opaque_id_alphabet
   end
 
   test "opaque_id generation works with custom configuration" do
@@ -523,6 +536,7 @@ end
 
 ### 2. Select Suitable Alphabets
 
+- **SLUG_LIKE_ALPHABET** (default): URL-safe, double-click selectable, no confusing characters
 - **ALPHANUMERIC_ALPHABET**: General purpose, URL-safe
 - **STANDARD_ALPHABET**: Fastest generation, URL-safe
 - **Custom alphabets**: Specific requirements (numeric, hexadecimal, etc.)

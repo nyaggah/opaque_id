@@ -1,6 +1,6 @@
-class AddOpaqueIdTo<%= table_name.camelize %> < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
+class AddOpaqueIdTo<%= model_name.tableize.camelize %> < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
   def change
-    add_column :<%= table_name %>, :<%= options[:column_name] %>, :string
-    add_index :<%= table_name %>, :<%= options[:column_name] %>, unique: true
+    add_column :<%= model_name.tableize %>, :<%= options[:column_name] %>, :string, limit: <%= options[:limit] %>
+    add_index :<%= model_name.tableize %>, :<%= options[:column_name] %>, unique: true
   end
 end
