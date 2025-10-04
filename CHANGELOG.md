@@ -5,6 +5,14 @@ All notable changes to the OpaqueId gem will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.6](https://github.com/nyaggah/opaque_id/compare/v1.7.5...v1.7.6) (2025-10-04)
+
+
+### Miscellaneous Chores
+
+* add generic ruby platform to lockfile ([cc07242](https://github.com/nyaggah/opaque_id/commit/cc0724245f5340261730f0d150d0a5d588ddbbc4))
+* bundle + ruby generic platform ([6fe8a1b](https://github.com/nyaggah/opaque_id/commit/6fe8a1bc1db5d0dfb3a47844aeaecada30835060))
+
 ## [1.7.5](https://github.com/nyaggah/opaque_id/compare/v1.7.4...v1.7.5) (2025-10-04)
 
 
