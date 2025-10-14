@@ -5,6 +5,18 @@ All notable changes to the OpaqueId gem will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0](https://github.com/nyaggah/opaque_id/compare/v1.7.7...v2.0.0) (2025-10-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* None - fully backward compatible
+
+### Features
+
+* add global configuration support for all OpaqueId options ([b82e15f](https://github.com/nyaggah/opaque_id/commit/b82e15f2a869817dada1fe34212ffdbc1585d9f6))
+* add global configuration support for all OpaqueId options ([fcddb21](https://github.com/nyaggah/opaque_id/commit/fcddb213a5f6f5d4422a5a1bf260c4369e188d74))
+
 ## [1.7.7](https://github.com/nyaggah/opaque_id/compare/v1.7.6...v1.7.7) (2025-10-04)
 
 
