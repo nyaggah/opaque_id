@@ -193,4 +193,142 @@ class OpaqueIdTest < Minitest::Test
     assert_equal 10, id.length
     assert_match(/\A[AB]+\z/, id)
   end
+
+  # Configuration tests
+  def test_configuration_defaults
+    OpaqueId.reset_configuration!
+
+    config = OpaqueId.configuration
+    assert_equal 18, config.default_length
+    assert_equal OpaqueId::SLUG_LIKE_ALPHABET, config.default_alphabet
+    assert_equal :opaque_id, config.default_column
+    assert_equal false, config.default_require_letter_start
+    assert_equal [], config.default_purge_chars
+    assert_equal 3, config.default_max_retry
+  end
+
+  def test_configure_method
+    OpaqueId.reset_configuration!
+
+    OpaqueId.configure do |config|
+      config.default_length = 21
+      config.default_alphabet = OpaqueId::STANDARD_ALPHABET
+      config.default_column = :public_id
+      config.default_require_letter_start = true
+      config.default_purge_chars = %w[0 O]
+      config.default_max_retry = 5
+    end
+
+    config = OpaqueId.configuration
+    assert_equal 21, config.default_length
+    assert_equal OpaqueId::STANDARD_ALPHABET, config.default_alphabet
+    assert_equal :public_id, config.default_column
+    assert_equal true, config.default_require_letter_start
+    assert_equal %w[0 O], config.default_purge_chars
+    assert_equal 5, config.default_max_retry
+  end
+
+  def test_reset_configuration
+    # Set custom configuration
+    OpaqueId.configure do |config|
+      config.default_length = 25
+      config.default_alphabet = OpaqueId::ALPHANUMERIC_ALPHABET
+      config.default_column = :public_id
+      config.default_require_letter_start = true
+      config.default_purge_chars = %w[0 O]
+      config.default_max_retry = 5
+    end
+
+    # Verify it's set
+    assert_equal 25, OpaqueId.configuration.default_length
+
+    # Reset and verify defaults
+    OpaqueId.reset_configuration!
+    assert_equal 18, OpaqueId.configuration.default_length
+    assert_equal OpaqueId::SLUG_LIKE_ALPHABET, OpaqueId.configuration.default_alphabet
+    assert_equal :opaque_id, OpaqueId.configuration.default_column
+    assert_equal false, OpaqueId.configuration.default_require_letter_start
+    assert_equal [], OpaqueId.configuration.default_purge_chars
+    assert_equal 3, OpaqueId.configuration.default_max_retry
+  end
+
+  def test_model_uses_global_configuration
+    OpaqueId.reset_configuration!
+
+    # Set global configuration
+    OpaqueId.configure do |config|
+      config.default_length = 21
+      config.default_alphabet = OpaqueId::STANDARD_ALPHABET
+      config.default_column = :public_id
+      config.default_require_letter_start = true
+      config.default_purge_chars = %w[0 O]
+      config.default_max_retry = 5
+    end
+
+    # Create a test model class that inherits from ActiveRecord::Base
+    test_model_class = Class.new(ActiveRecord::Base) do
+      include OpaqueId::Model
+
+      self.table_name = 'test_models'
+    end
+
+    # Verify model uses global defaults
+    assert_equal 21, test_model_class.opaque_id_length
+    assert_equal OpaqueId::STANDARD_ALPHABET, test_model_class.opaque_id_alphabet
+    assert_equal :public_id, test_model_class.opaque_id_column
+    assert_equal true, test_model_class.opaque_id_require_letter_start
+    assert_equal %w[0 O], test_model_class.opaque_id_purge_chars
+    assert_equal 5, test_model_class.opaque_id_max_retry
+  end
+
+  def test_model_override_takes_priority
+    OpaqueId.reset_configuration!
+
+    # Set global configuration
+    OpaqueId.configure do |config|
+      config.default_length = 21
+      config.default_alphabet = OpaqueId::STANDARD_ALPHABET
+    end
+
+    # Create a test model class with overrides
+    test_model_class = Class.new(ActiveRecord::Base) do
+      include OpaqueId::Model
+
+      self.table_name = 'test_models'
+      self.opaque_id_length = 15
+      self.opaque_id_alphabet = OpaqueId::ALPHANUMERIC_ALPHABET
+    end
+
+    # Verify model overrides take priority
+    assert_equal 15, test_model_class.opaque_id_length
+    assert_equal OpaqueId::ALPHANUMERIC_ALPHABET, test_model_class.opaque_id_alphabet
+  end
+
+  def test_configuration_persistence_across_models
+    OpaqueId.reset_configuration!
+
+    # Set global configuration
+    OpaqueId.configure do |config|
+      config.default_length = 12
+      config.default_alphabet = OpaqueId::ALPHANUMERIC_ALPHABET
+    end
+
+    # Create multiple model classes
+    model1 = Class.new(ActiveRecord::Base) do
+      include OpaqueId::Model
+
+      self.table_name = 'test_models_1'
+    end
+    model2 = Class.new(ActiveRecord::Base) do
+      include OpaqueId::Model
+
+      self.table_name = 'test_models_2'
+    end
+
+    # Both should use the same global configuration
+    assert_equal 12, model1.opaque_id_length
+    assert_equal 12, model2.opaque_id_length
+    assert_equal OpaqueId::ALPHANUMERIC_ALPHABET, model1.opaque_id_alphabet
+    assert_equal OpaqueId::ALPHANUMERIC_ALPHABET, model2.opaque_id_alphabet
+  end
 end

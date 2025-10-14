@@ -2,6 +2,7 @@
 
 require 'securerandom'
 require_relative 'opaque_id/version'
+require_relative 'opaque_id/configuration'
 require_relative 'opaque_id/model'
 
 module OpaqueId
@@ -19,6 +20,18 @@ module OpaqueId
   ALPHANUMERIC_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
   class << self
+    def configuration
+      @configuration ||= Configuration.new
+    end
+
+    def configure
+      yield(configuration)
+    end
+
+    def reset_configuration!
+      @configuration = Configuration.new
+    end
+
     # Generate a cryptographically secure random ID
     def generate(size: 18, alphabet: SLUG_LIKE_ALPHABET)
       raise ConfigurationError, 'Size must be positive' unless size.positive?

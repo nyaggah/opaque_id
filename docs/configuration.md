@@ -68,28 +68,54 @@ OpaqueId.configure do |config|
 end
 ```
 
-### Advanced Global Configuration
+### Complete Initializer Example
+
+Here's a comprehensive example showing all available configuration options:
 
 ```ruby
 # config/initializers/opaque_id.rb
 OpaqueId.configure do |config|
-  # Set default values for all models
+  # =============================================================================
+  # GLOBAL CONFIGURATION (applies to all models unless overridden)
+  # =============================================================================
+
+  # Default length for generated IDs (default: 18)
   config.default_length = 21
+
+  # Default alphabet for generated IDs (default: SLUG_LIKE_ALPHABET)
+  # Available alphabets:
+  #   - OpaqueId::SLUG_LIKE_ALPHABET (36 chars: 0-9, a-z)
+  #   - OpaqueId::ALPHANUMERIC_ALPHABET (62 chars: A-Z, a-z, 0-9)
+  #   - OpaqueId::STANDARD_ALPHABET (64 chars: A-Z, a-z, 0-9, -, _)
   config.default_alphabet = OpaqueId::ALPHANUMERIC_ALPHABET
 
-  # Configure specific models
-  config.models = {
-    'User' => {
-      length: 15,
-      alphabet: OpaqueId::STANDARD_ALPHABET,
-      require_letter_start: true
-    },
-    'Order' => {
-      length: 12,
-      alphabet: OpaqueId::ALPHANUMERIC_ALPHABET,
-      column: :public_id
-    }
-  }
+  # Default column name for storing opaque IDs (default: :opaque_id)
+  config.default_column = :public_id
+
+  # Default requirement for IDs to start with a letter (default: false)
+  config.default_require_letter_start = true
+
+  # Default characters to purge from generated IDs (default: [])
+  config.default_purge_chars = ['0', 'O', 'l', 'I']
+
+  # Default max retry attempts for collision handling (default: 3)
+  config.default_max_retry = 5
+end
+```
+
+**Note**: All configuration options can be overridden per-model:
+
+```ruby
+# PER-MODEL OVERRIDE EXAMPLE
+# Override global defaults for specific models:
+
+class User < ApplicationRecord
+  include OpaqueId::Model
+
+  # Override global defaults for this model
+  self.opaque_id_length = 15
+  self.opaque_id_alphabet = OpaqueId::STANDARD_ALPHABET
+  self.opaque_id_require_letter_start = false
 end
 ```
 

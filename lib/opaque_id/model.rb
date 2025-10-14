@@ -22,7 +22,7 @@ module OpaqueId
 
       # Configuration options
       def opaque_id_column
-        @opaque_id_column ||= :opaque_id
+        @opaque_id_column ||= OpaqueId.configuration.default_column
       end
 
       def opaque_id_column=(value)
@@ -30,7 +30,7 @@ module OpaqueId
       end
 
       def opaque_id_length
-        @opaque_id_length ||= 18
+        @opaque_id_length ||= OpaqueId.configuration.default_length
       end
 
       def opaque_id_length=(value)
@@ -38,7 +38,7 @@ module OpaqueId
       end
 
       def opaque_id_alphabet
-        @opaque_id_alphabet ||= OpaqueId::SLUG_LIKE_ALPHABET
+        @opaque_id_alphabet ||= OpaqueId.configuration.default_alphabet
       end
 
       def opaque_id_alphabet=(value)
@@ -46,7 +46,7 @@ module OpaqueId
       end
 
       def opaque_id_require_letter_start
-        @opaque_id_require_letter_start ||= false
+        @opaque_id_require_letter_start ||= OpaqueId.configuration.default_require_letter_start
       end
 
       def opaque_id_require_letter_start=(value)
@@ -54,7 +54,7 @@ module OpaqueId
       end
 
       def opaque_id_purge_chars
-        @opaque_id_purge_chars ||= []
+        @opaque_id_purge_chars ||= OpaqueId.configuration.default_purge_chars
       end
 
       def opaque_id_purge_chars=(value)
@@ -62,7 +62,7 @@ module OpaqueId
       end
 
       def opaque_id_max_retry
-        @opaque_id_max_retry ||= 3
+        @opaque_id_max_retry ||= OpaqueId.configuration.default_max_retry
       end
 
       def opaque_id_max_retry=(value)
