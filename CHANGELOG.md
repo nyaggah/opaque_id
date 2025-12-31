@@ -5,6 +5,14 @@ All notable changes to the OpaqueId gem will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1](https://github.com/nyaggah/opaque_id/compare/v2.0.0...v2.0.1) (2025-12-31)
+
+
+### Miscellaneous Chores
+
+* **deps:** update minitest requirement from ~&gt; 5.16 to ~&gt; 6.0 ([b071bf7](https://github.com/nyaggah/opaque_id/commit/b071bf72fafff78e304cffa0e85d45145f5ae38d))
+* **deps:** update minitest requirement from ~&gt; 5.16 to ~&gt; 6.0 ([76b386b](https://github.com/nyaggah/opaque_id/commit/76b386b26ea2b6db11d56a0855ae9a4c9c705bc1))
+
 ## [2.0.0](https://github.com/nyaggah/opaque_id/compare/v1.7.7...v2.0.0) (2025-10-14)
 
 
